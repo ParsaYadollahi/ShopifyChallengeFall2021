@@ -3,6 +3,8 @@ import './App.css';
 
 // Components
 import SearchBar from "./components/SearchBar"
+import SearchResults from "./components/SearchResults"
+import Nominations from "./components/Nominations"
 
 // MUI
 import Grid from "@material-ui/core/Grid"
@@ -23,6 +25,24 @@ function App() {
             The Shoppies
           </Typography>
           <SearchBar />
+
+          <Grid
+            container
+            direction="row"
+            justify="center"
+            alignItems="center"
+            spacing={3}
+          >
+            <Grid item xs={6}>
+              <SearchResults />
+            </Grid>
+
+            <Grid item xs={6}>
+              <Nominations />
+            </Grid>
+
+          </Grid>
+
         </Grid>
       </Grid>
     </>

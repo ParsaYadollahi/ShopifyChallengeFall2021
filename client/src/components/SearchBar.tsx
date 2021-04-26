@@ -16,6 +16,7 @@ export default function SearchBar() {
         direction="row"
         justify="center"
         alignItems="center"
+        style={{ margin: '30px 0px' }}
       >
         <Grid item xs={12}>
           <Paper variant="outlined" square>
