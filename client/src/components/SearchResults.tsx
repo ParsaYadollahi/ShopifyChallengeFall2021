@@ -5,7 +5,12 @@ import Grid from "@material-ui/core/Grid"
 import Paper from "@material-ui/core/Paper"
 import Typography from "@material-ui/core/Typography"
 
-export default function SearchResults() {
+type Props = {
+  movieData: IMovies[]
+}
+
+const SearchResults: React.FC<Props> = ({ movieData }) => {
+  movieData.map(movie => console.log(movie.Title))
   return (
     <>
       <Grid
@@ -19,6 +24,9 @@ export default function SearchResults() {
             <Typography>
               Results for movie
           </Typography>
+            <div>
+              {movieData.map(movie => <div>{movie.Title}</div>)}
+            </div>
           </Paper>
         </Grid>
 
@@ -26,3 +34,5 @@ export default function SearchResults() {
     </>
   )
 }
+
+export default SearchResults;

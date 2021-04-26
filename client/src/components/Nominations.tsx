@@ -5,7 +5,7 @@ import Grid from "@material-ui/core/Grid"
 import Typography from "@material-ui/core/Typography"
 import Paper from "@material-ui/core/Paper"
 
-export default function Nominations() {
+function Nominations() {
   return (
     <>
       <Grid
@@ -27,3 +27,6 @@ export default function Nominations() {
 
   )
 }
+
+
+export default Nominations;
