@@ -7,6 +7,10 @@ import Typography from "@material-ui/core/Typography"
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import Button from "@material-ui/core/Button"
+import Snackbar from '@material-ui/core/Snackbar';
+import Alert from '@material-ui/lab/Alert';
+import AlertTitle from '@material-ui/lab/AlertTitle';
+
 
 // Components
 import Nominations from "./Nominations"
@@ -20,11 +24,15 @@ type Props = {
 
 const SearchResults: React.FC<Props> = ({ movieData }) => {
 
-  // const [movieNominations, setNominations] = useState<IMovies[]>([])
   const { movieNominations, setNominations } = useContext(NominationsContext)
+  const [open, setOpen] = React.useState(false);
 
   const handleAddNomination = (movieNomination: IMovies) => {
-    setNominations([...movieNominations, movieNomination])
+    if (movieNominations.length < 5) {
+      setNominations([...movieNominations, movieNomination])
+    } else {
+      setOpen(true)
+    }
   }
 
   const mapMovies = () => {
@@ -49,7 +57,10 @@ const SearchResults: React.FC<Props> = ({ movieData }) => {
             </Grid>
             <Grid item xs={4} container
               justify="flex-end">
+
+
               <Button variant="outlined"
+                disabled={movieNominations.includes(movie)}
                 onClick={(e) => { handleAddNomination(movie) }}
               >
                 Nominate
@@ -77,6 +88,13 @@ const SearchResults: React.FC<Props> = ({ movieData }) => {
             </List>
           </Paper>
         </Grid>
+
+        <Snackbar open={open} autoHideDuration={3000} onClose={() => { setOpen(false) }} >
+          <Alert severity="warning" onClose={() => { setOpen(false) }}>
+            <AlertTitle>Warning</AlertTitle>
+            Delete one of your nominations to <strong> add this movie! </strong>
+          </Alert>
+        </Snackbar >
 
         <Grid item xs={6} container>
           <Nominations nominationData={movieNominations} />
