@@ -22,6 +22,7 @@ function App() {
           <Typography variant="h4" component="h1" style={{ padding: '100px 0px 15px 0px' }}>
             The Shoppies
           </Typography>
+
           <SearchBar />
 
         </Grid>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useContext } from 'react'
 
 // MUI
 import Grid from "@material-ui/core/Grid"
@@ -11,15 +11,19 @@ import Button from "@material-ui/core/Button"
 // Components
 import Nominations from "./Nominations"
 
+// utils
+import { NominationsContext } from '../utils/NominationsContext'
+
 type Props = {
   movieData: IMovies[]
 }
 
 const SearchResults: React.FC<Props> = ({ movieData }) => {
 
-  const [movieNominations, setNominations] = useState<IMovies[]>([])
+  // const [movieNominations, setNominations] = useState<IMovies[]>([])
+  const { movieNominations, setNominations } = useContext(NominationsContext)
 
-  const handleAddNomination = (e: any, movieNomination: IMovies) => {
+  const handleAddNomination = (movieNomination: IMovies) => {
     setNominations([...movieNominations, movieNomination])
   }
 
@@ -46,7 +50,7 @@ const SearchResults: React.FC<Props> = ({ movieData }) => {
             <Grid item xs={4} container
               justify="flex-end">
               <Button variant="outlined"
-                onClick={(e) => { handleAddNomination(e, movie) }}
+                onClick={(e) => { handleAddNomination(movie) }}
               >
                 Nominate
                   </Button>

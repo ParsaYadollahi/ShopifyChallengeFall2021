@@ -8,7 +8,9 @@ import Paper from "@material-ui/core/Paper"
 import TextField from '@material-ui/core/TextField';
 import SearchIcon from '@material-ui/icons/Search';
 import InputAdornment from '@material-ui/core/InputAdornment';
-import { FormControl } from '@material-ui/core';
+
+// utils
+import { NominationsContext } from '../utils/NominationsContext'
 
 // Components
 import SearchResults from "./SearchResults"
@@ -28,6 +30,8 @@ const getMovie = async (movieTitle: { title: String }): Promise<AxiosResponse<Ap
 
 const SearchBar: React.FC = () => {
 
+  const [movieNominations, setNominations] = useState<IMovies[]>([])
+
   const [movies, setMovies] = useState<IMovies[]>([])
   const [textFieldData, setTextFieldData] = useState<{ title: String }>({ title: '' })
 
@@ -42,14 +46,12 @@ const SearchBar: React.FC = () => {
       .catch((err: Error) => console.log(err))
   }
 
-
   const handleTextField = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setTextFieldData({
       ...textFieldData,
       [e.currentTarget.id]: e.currentTarget.value,
     })
   }
-
 
   const handleKeywordKeyPress = (e: React.KeyboardEvent<HTMLDivElement>) => {
     if (e.key === 'Enter') {
@@ -59,7 +61,6 @@ const SearchBar: React.FC = () => {
       }
     }
   };
-
 
   return (
     <>
@@ -107,17 +108,21 @@ const SearchBar: React.FC = () => {
             </Grid>
           </Paper>
 
-
           <Grid
             container
             direction="row"
             justify="flex-start"
             alignItems="center"
           >
-            <Grid item xs={12}>
-              <SearchResults movieData={movies} />
 
-            </Grid>
+            <NominationsContext.Provider
+              value={{ movieNominations, setNominations }}
+            >
+              <Grid item xs={12}>
+                <SearchResults movieData={movies} />
+              </Grid>
+
+            </NominationsContext.Provider>
 
           </Grid>
 

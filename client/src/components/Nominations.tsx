@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { NominationsContext } from '../utils/NominationsContext'
 
 // MUI
 import Grid from "@material-ui/core/Grid"
@@ -14,8 +15,11 @@ type Props = {
 
 const Nominations: React.FC<Props> = ({ nominationData }) => {
 
-  const handleDeleteNomination = (e: any, movieNomination: IMovies) => {
-    // setNominations([...movieNominations, movieNomination])
+
+  const { movieNominations, setNominations } = useContext(NominationsContext)
+
+  const handleDeleteNomination = (movieNomination: IMovies) => {
+    setNominations(movieNominations.filter((deletedNomination) => deletedNomination.Title !== movieNomination.Title));
   }
 
   const mapNominations = () => {
@@ -41,7 +45,7 @@ const Nominations: React.FC<Props> = ({ nominationData }) => {
             <Grid item xs={4} container
               justify="flex-end">
               <Button variant="outlined"
-                onClick={(e) => { handleDeleteNomination(e, nomination) }}
+                onClick={(e) => { handleDeleteNomination(nomination) }}
               >
                 Delete
                   </Button>
