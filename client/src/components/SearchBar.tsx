@@ -113,7 +113,6 @@ const SearchBar: React.FC = () => {
             direction="row"
             justify="flex-start"
             alignItems="center"
-            spacing={3}
           >
             <Grid item xs={12}>
               <SearchResults movieData={movies} />

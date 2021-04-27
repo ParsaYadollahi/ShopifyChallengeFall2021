@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 // MUI
 import Grid from "@material-ui/core/Grid"
@@ -17,33 +17,42 @@ type Props = {
 
 const SearchResults: React.FC<Props> = ({ movieData }) => {
 
+  const [movieNominations, setNominations] = useState<IMovies[]>([])
+
+  const handleAddNomination = (e: any, movieNomination: IMovies) => {
+    setNominations([...movieNominations, movieNomination])
+  }
+
   const mapMovies = () => {
     return (
-      movieData.map(movie =>
-        <>
-          <ListItem>
-            <Grid
-              container
-              direction="row"
-              justify="center"
-              alignItems="center"
-            >
+      movieData.map((movie, k) =>
+        <ListItem key={k}>
+          <Grid
+            container
+            direction="row"
+            justify="center"
+            alignItems="center"
+          >
 
-              <Grid item xs={8} container
-                justify="flex-start">
-                <Typography>
-                  {movie.Title} ({movie.Year})
+            <Grid
+              item
+              xs={8}
+              container
+              justify="flex-start">
+              <Typography>
+                {movie.Title} ({movie.Year})
                 </Typography>
-              </Grid>
-              <Grid item xs={4} container
-                justify="flex-end">
-                <Button variant="outlined" >
-                  Nominate
-                  </Button>
-              </Grid>
             </Grid>
-          </ListItem>
-        </>)
+            <Grid item xs={4} container
+              justify="flex-end">
+              <Button variant="outlined"
+                onClick={(e) => { handleAddNomination(e, movie) }}
+              >
+                Nominate
+                  </Button>
+            </Grid>
+          </Grid>
+        </ListItem>)
     )
   }
   return (
@@ -52,10 +61,10 @@ const SearchResults: React.FC<Props> = ({ movieData }) => {
         container
         direction="row"
         justify="flex-start"
-        alignItems="center"
+        alignItems="flex-start"
       >
         <Grid item xs={6}>
-          <Paper variant="outlined" square style={{ padding: '20px' }}>
+          <Paper variant="outlined" square>
             <Typography variant="h6" component="h1">
               Results for movie
           </Typography>
@@ -64,9 +73,9 @@ const SearchResults: React.FC<Props> = ({ movieData }) => {
             </List>
           </Paper>
         </Grid>
-        <Grid item xs={6} container
-        >
-          <Nominations />
+
+        <Grid item xs={6} container>
+          <Nominations nominationData={movieNominations} />
         </Grid>
       </Grid >
 
