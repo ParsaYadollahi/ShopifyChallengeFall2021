@@ -15,7 +15,7 @@ import { NominationsContext } from '../utils/NominationsContext'
 // Components
 import SearchResults from "./SearchResults"
 
-const baseUrl = "http://www.omdbapi.com/?apikey=4b14c67e&s="
+const baseUrl = "https://www.omdbapi.com/?apikey=4b14c67e&s="
 
 const getMovie = async (movieTitle: { title: String }): Promise<AxiosResponse<ApiDataType>> => {
   try {
