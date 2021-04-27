@@ -12,7 +12,6 @@ import { FormControl } from '@material-ui/core';
 
 // Components
 import SearchResults from "./SearchResults"
-import Nominations from "./Nominations"
 
 const baseUrl = "http://www.omdbapi.com/?apikey=4b14c67e&s="
 
@@ -112,16 +111,13 @@ const SearchBar: React.FC = () => {
           <Grid
             container
             direction="row"
-            justify="center"
+            justify="flex-start"
             alignItems="center"
             spacing={3}
           >
-            <Grid item xs={6}>
+            <Grid item xs={12}>
               <SearchResults movieData={movies} />
-            </Grid>
 
-            <Grid item xs={6}>
-              <Nominations />
             </Grid>
 
           </Grid>
