@@ -1,4 +1,3 @@
-import React from 'react';
 import './App.css';
 
 // Components
@@ -16,10 +15,6 @@ import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
 import { makeStyles } from '@material-ui/core/styles';
 import { Theme } from '@material-ui/core/styles/createMuiTheme';
 
-
-type Props = {
-  movieData: IMovies[]
-}
 
 const useStyles = makeStyles((theme: Theme & typeof themeFile) => {
   return ({

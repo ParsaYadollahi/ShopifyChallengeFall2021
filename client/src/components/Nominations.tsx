@@ -48,15 +48,12 @@ const Nominations: React.FC<Props> = ({ nominationData }) => {
   const [openDialog, setOpenDialog] = React.useState(false);
 
   useEffect(() => {
-
     const localNominations = JSON.parse(localStorage.getItem("nominations") || "[]")
-
     if (localNominations.length !== 0) {
       setOpenDialog(true)
     }
     setNominations([...localNominations])
-
-  }, [])
+  }, [setOpenDialog, setNominations])
 
   useEffect(() => {
     localStorage.setItem("nominations", JSON.stringify(movieNominations))
@@ -73,7 +70,7 @@ const Nominations: React.FC<Props> = ({ nominationData }) => {
           key={k}
           className={classes.resultsList}
         >
-          {k != 0 ? <Divider variant="middle" /> : <> </>}
+          {k !== 0 ? <Divider variant="middle" /> : <> </>}
           <ListItem key={k}>
             <Grid
               container

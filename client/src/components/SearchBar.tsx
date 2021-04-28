@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import axios, { AxiosResponse } from 'axios'
 
 // MUI
 import Grid from "@material-ui/core/Grid"
@@ -14,19 +13,6 @@ import { NominationsContext } from '../utils/NominationsContext'
 
 // Components
 import SearchResults from "./SearchResults"
-
-const baseUrl = "https://www.omdbapi.com/?apikey=4b14c67e&s="
-
-const getMovie = async (movieTitle: { title: String }): Promise<AxiosResponse<ApiDataType>> => {
-  try {
-    const movieData: AxiosResponse<ApiDataType> = await axios.get(
-      baseUrl + movieTitle.title
-    )
-    return movieData
-  } catch (error) {
-    throw new Error(error);
-  }
-};
 
 const SearchBar: React.FC = () => {
 

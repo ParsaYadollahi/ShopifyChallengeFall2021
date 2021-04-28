@@ -54,14 +54,14 @@ const SearchResults: React.FC<Props> = ({ movieTitle }) => {
   const classes = useStyles();
 
   const { movieNominations, setNominations } = useContext(NominationsContext)
-  const [open, setOpen] = useState(false);
+  const [openAlert, setOpenAlert] = useState(false);
   const [movies, setMovies] = useState<IMovies[]>([])
 
   const handleAddNomination = (movieNomination: IMovies) => {
     if (movieNominations.length < 5) {
       setNominations([...movieNominations, movieNomination])
     } else {
-      setOpen(true)
+      setOpenAlert(true)
     }
   }
 
@@ -85,7 +85,7 @@ const SearchResults: React.FC<Props> = ({ movieTitle }) => {
           key={k}
           className={classes.resultsList}
         >
-          {k != 0 ? <Divider variant="middle" /> : <> </>}
+          {k !== 0 ? <Divider variant="middle" /> : <> </>}
           <ListItem>
             <Grid
               container
@@ -142,8 +142,8 @@ const SearchResults: React.FC<Props> = ({ movieTitle }) => {
           </Paper>
         </Grid>
 
-        <Snackbar open={open} autoHideDuration={3000} onClose={() => { setOpen(false) }} >
-          <Alert severity="warning" onClose={() => { setOpen(false) }}>
+        <Snackbar open={openAlert} autoHideDuration={3000} onClose={() => { setOpenAlert(false) }} >
+          <Alert severity="warning" onClose={() => { setOpenAlert(false) }}>
             <AlertTitle>Warning</AlertTitle>
             <strong>Delete </strong> one of your nominations to <strong> add this movie! </strong>
           </Alert>
