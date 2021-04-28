@@ -32,19 +32,9 @@ const SearchBar: React.FC = () => {
 
   const [movieNominations, setNominations] = useState<IMovies[]>([])
 
-  const [movies, setMovies] = useState<IMovies[]>([])
+  const [movie, setMovieTitle] = useState<String>('')
   const [textFieldData, setTextFieldData] = useState<{ title: String }>({ title: '' })
 
-
-  const fetchMovie = (movieName: { title: String }): void => {
-    getMovie(movieName)
-      .then((movieData: IMovies[] | any) => {
-        setMovies([...movieData.data.Search])
-        setTextFieldData({ title: '' })
-      })
-
-      .catch((err: Error) => console.log(err))
-  }
 
   const handleTextField = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setTextFieldData({
@@ -56,7 +46,7 @@ const SearchBar: React.FC = () => {
   const handleKeywordKeyPress = (e: React.KeyboardEvent<HTMLDivElement>) => {
     if (e.key === 'Enter') {
       if (textFieldData !== undefined) {
-        fetchMovie(textFieldData)
+        setMovieTitle(textFieldData.title)
         setTextFieldData({ title: "" })
       }
     }
@@ -119,7 +109,7 @@ const SearchBar: React.FC = () => {
               value={{ movieNominations, setNominations }}
             >
               <Grid item xs={12}>
-                <SearchResults movieData={movies} />
+                <SearchResults movieTitle={movie} />
               </Grid>
 
             </NominationsContext.Provider>

@@ -1,4 +1,5 @@
-import React, { useContext } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
+import axios, { AxiosResponse } from 'axios'
 
 // MUI
 import Grid from "@material-ui/core/Grid"
@@ -24,7 +25,7 @@ import themeFile from '../utils/theme';
 
 
 type Props = {
-  movieData: IMovies[]
+  movieTitle: String
 }
 
 const useStyles = makeStyles((theme: Theme & typeof themeFile) => {
@@ -35,12 +36,26 @@ const useStyles = makeStyles((theme: Theme & typeof themeFile) => {
   })
 });
 
-const SearchResults: React.FC<Props> = ({ movieData }) => {
+const baseUrl = "https://www.omdbapi.com/?apikey=4b14c67e&s="
+
+const getMovie = async (movieTitle: String): Promise<AxiosResponse<ApiDataType>> => {
+  try {
+    const movieData: AxiosResponse<ApiDataType> = await axios.get(
+      baseUrl + movieTitle
+    )
+    return movieData
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
+const SearchResults: React.FC<Props> = ({ movieTitle }) => {
 
   const classes = useStyles();
 
   const { movieNominations, setNominations } = useContext(NominationsContext)
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
+  const [movies, setMovies] = useState<IMovies[]>([])
 
   const handleAddNomination = (movieNomination: IMovies) => {
     if (movieNominations.length < 5) {
@@ -50,9 +65,22 @@ const SearchResults: React.FC<Props> = ({ movieData }) => {
     }
   }
 
+  useEffect(() => {
+    fetchMovie(movieTitle)
+  }, [movieTitle])
+
+  const fetchMovie = (movieTitle: String): void => {
+    getMovie(movieTitle)
+      .then((movieData: IMovies[] | any) => {
+        setMovies([...movieData.data.Search])
+      })
+
+      .catch((err: Error) => console.log(err))
+  }
+
   const mapMovies = () => {
     return (
-      movieData.map((movie, k) =>
+      movies.map((movie, k) =>
         <Grid
           key={k}
           className={classes.resultsList}
@@ -125,8 +153,6 @@ const SearchResults: React.FC<Props> = ({ movieData }) => {
           <Nominations nominationData={movieNominations} />
         </Grid>
       </Grid >
-
-
     </>
   )
 }
