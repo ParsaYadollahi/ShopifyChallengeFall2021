@@ -1,5 +1,4 @@
 import React, { useContext, useEffect } from 'react'
-import { NominationsContext } from '../utils/MovieContext'
 
 // MUI
 import Grid from "@material-ui/core/Grid"
@@ -14,7 +13,11 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import Slide from '@material-ui/core/Slide';
 import { TransitionProps } from '@material-ui/core/transitions';
 
+// Components
+import PopoverPoster from "./PopoverPoster"
 
+// utils
+import { NominationsContext, PopoverContext } from '../utils/MovieContext'
 import { makeStyles } from '@material-ui/core/styles';
 import { Theme } from '@material-ui/core/styles/createMuiTheme';
 import themeFile from '../utils/theme';
@@ -45,7 +48,16 @@ const Nominations: React.FC<Props> = ({ nominationData }) => {
   const classes = useStyles();
 
   const { movieNominations, setNominations } = useContext(NominationsContext)
+  const { anchorElPopover, setAnchorElPopover } = useContext(PopoverContext)
+  const [moviePopoverPoster, setmoviePopoverPoster] = React.useState<string>('');
+
   const [openDialog, setOpenDialog] = React.useState(false);
+
+  const handlePopover = (e: React.MouseEvent<HTMLElement, MouseEvent>, moviePoster: string) => {
+    setmoviePopoverPoster(moviePoster)
+    setAnchorElPopover(e.currentTarget);
+    console.log(moviePoster)
+  };
 
   useEffect(() => {
     const localNominations = JSON.parse(localStorage.getItem("nominations") || "[]")
@@ -85,7 +97,13 @@ const Nominations: React.FC<Props> = ({ nominationData }) => {
                 container
                 justify="flex-start"
               >
-                <Typography variant='subtitle2' component="h2">
+                <Typography
+                  variant='subtitle2'
+                  component="h2"
+                  aria-owns={Boolean(anchorElPopover) ? 'mouse-over-popover' : undefined}
+                  aria-haspopup="true"
+                  onMouseEnter={(e: any) => { handlePopover(e, nomination.Poster) }}
+                  onMouseLeave={() => { setAnchorElPopover(null) }}>
                   {nomination.Title} ({nomination.Year})
                 </Typography>
               </Grid>
@@ -147,6 +165,8 @@ const Nominations: React.FC<Props> = ({ nominationData }) => {
           </Button>
         </DialogActions>
       </Dialog>
+
+      <PopoverPoster moviePopoverPoster={moviePopoverPoster} />
     </>
 
   )
