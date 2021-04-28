@@ -13,7 +13,14 @@ import Alert from '@material-ui/lab/Alert';
 import AlertTitle from '@material-ui/lab/AlertTitle';
 import Divider from '@material-ui/core/Divider';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import Link from '@material-ui/core/Link';
+import Popover from '@material-ui/core/Popover';
 
+import Card from '@material-ui/core/Card';
+import CardHeader from '@material-ui/core/CardHeader';
+import CardMedia from '@material-ui/core/CardMedia';
+import CardContent from '@material-ui/core/CardContent';
+import CardActions from '@material-ui/core/CardActions'
 
 // Components
 import Nominations from "./Nominations"
@@ -59,6 +66,8 @@ const SearchResults: React.FC<Props> = ({ movieTitle }) => {
   const [openAlertError, setOpenAlertError] = useState(false);
   const [movies, setMovies] = useState<IMovies[]>([])
   const [loading, setLoading] = useState<Boolean>(false)
+  const [anchorElPopover, setAnchorElPopover] = React.useState<HTMLElement | null>(null);
+  const [moviePopoverPoster, setmoviePopoverPoster] = React.useState<string>('');
 
 
   const handleAddNomination = (movieNomination: IMovies) => {
@@ -68,6 +77,13 @@ const SearchResults: React.FC<Props> = ({ movieTitle }) => {
       setOpenAlert(true)
     }
   }
+
+  const handlePopover = (e: React.MouseEvent<HTMLElement, MouseEvent>, moviePoster: string) => {
+    setmoviePopoverPoster(moviePoster)
+    setAnchorElPopover(e.currentTarget);
+  };
+
+
 
   useEffect(() => {
     fetchMovie(movieTitle)
@@ -111,7 +127,15 @@ const SearchResults: React.FC<Props> = ({ movieTitle }) => {
                 container
                 justify="flex-start"
               >
-                <Typography variant='subtitle2' component="h2">
+                <Typography
+                  variant='subtitle2'
+                  component="h2"
+                  aria-owns={Boolean(anchorElPopover) ? 'mouse-over-popover' : undefined}
+                  aria-haspopup="true"
+                  onMouseEnter={(e: any) => { handlePopover(e, movie.Poster) }}
+                  onMouseLeave={() => { setAnchorElPopover(null) }}
+
+                >
                   {movie.Title} ({movie.Year})
                 </Typography>
               </Grid>
@@ -130,7 +154,7 @@ const SearchResults: React.FC<Props> = ({ movieTitle }) => {
               </Grid>
             </Grid>
           </ListItem>
-        </Grid>
+        </Grid >
       )
     )
   }
@@ -172,6 +196,34 @@ const SearchResults: React.FC<Props> = ({ movieTitle }) => {
             The movie <strong>{movieTitle}</strong> doesn't exist!
           </Alert>
         </Snackbar >
+
+        <Popover
+          id="mouse-over-popover"
+          open={Boolean(anchorElPopover)}
+          anchorEl={anchorElPopover}
+          onClose={() => { setAnchorElPopover(null) }}
+          style={{ pointerEvents: 'none' }}
+          disableRestoreFocus
+          anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'center',
+          }}
+          transformOrigin={{
+            vertical: 'top',
+            horizontal: 'center',
+          }}
+        >
+
+          <Card>
+            <CardMedia
+              style={{ width: '150px' }}
+              image={moviePopoverPoster}
+              component="img"
+              title="Movie poster"
+            />
+          </Card>
+
+        </Popover>
 
         <Grid item xs={6} container>
           <Nominations nominationData={movieNominations} />
