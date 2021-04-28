@@ -3,21 +3,53 @@ export default {
     primary: {
       light: '#ffffff',
       main: '#b3e5fc',
-      dark: '#c7c7c7',
+      dark: '#fafafa',
       contrastText: '#000',
     },
     secondary: {
-      light: '#63a4ff',
-      main: '#1976d2',
-      dark: '#004ba0',
-      contrastText: '#fff',
+      light: '#ffffff',
+      main: '#b3e5fc',
+      dark: '#fafafa',
+      contrastText: '#000',
     },
   },
   typography: {
-    useNextVariants: true,
+    fontFamily: `"Montserrat", sans-serif`,
     body2: {
       fontSize: 12,
+    }
+  },
+
+  addButton: {
+    padding: '6px 20px',
+    backgroundColor: '#ffffff',
+    color: '#0F9D58',
+    boxShadow: 'none',
+    border: '1px solid #0F9D58',
+    '&:hover': {
+      backgroundColor: '#dcfcdf',
+      boxShadow: 'none',
     },
-    fontFamily: `"Montserrat", sans-serif`,
-  }
-}
+  },
+  removeButton: {
+    padding: '6px 20px',
+    backgroundColor: '#ffffff',
+    color: '#DB4437',
+    boxShadow: 'none',
+    border: '1px solid #DB4437',
+    '&:hover': {
+      backgroundColor: '#ffd1d1',
+      boxShadow: 'none',
+    },
+  },
+
+  resultTitles: {
+    fontWeigth: 500,
+    padding: '20px 20px 5px 20px'
+  },
+
+  resultsLists: {
+    padding: "0px 25px"
+  },
+
+};

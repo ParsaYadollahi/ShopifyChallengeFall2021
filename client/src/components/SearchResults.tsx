@@ -10,6 +10,7 @@ import Button from "@material-ui/core/Button"
 import Snackbar from '@material-ui/core/Snackbar';
 import Alert from '@material-ui/lab/Alert';
 import AlertTitle from '@material-ui/lab/AlertTitle';
+import Divider from '@material-ui/core/Divider';
 
 
 // Components
@@ -17,12 +18,26 @@ import Nominations from "./Nominations"
 
 // utils
 import { NominationsContext } from '../utils/NominationsContext'
+import { makeStyles } from '@material-ui/core/styles';
+import { Theme } from '@material-ui/core/styles/createMuiTheme';
+import themeFile from '../utils/theme';
+
 
 type Props = {
   movieData: IMovies[]
 }
 
+const useStyles = makeStyles((theme: Theme & typeof themeFile) => {
+  return ({
+    addButton: theme.addButton,
+    resultsMovie: theme.resultTitles,
+    resultsList: theme.resultsLists
+  })
+});
+
 const SearchResults: React.FC<Props> = ({ movieData }) => {
+
+  const classes = useStyles();
 
   const { movieNominations, setNominations } = useContext(NominationsContext)
   const [open, setOpen] = React.useState(false);
@@ -38,49 +53,59 @@ const SearchResults: React.FC<Props> = ({ movieData }) => {
   const mapMovies = () => {
     return (
       movieData.map((movie, k) =>
-        <ListItem key={k}>
-          <Grid
-            container
-            direction="row"
-            justify="center"
-            alignItems="center"
-          >
-
+        <Grid
+          key={k}
+          className={classes.resultsList}
+        >
+          {k != 0 ? <Divider variant="middle" /> : <> </>}
+          <ListItem>
             <Grid
-              item
-              xs={8}
               container
-              justify="flex-start">
-              <Typography>
-                {movie.Title} ({movie.Year})
-                </Typography>
-            </Grid>
-            <Grid item xs={4} container
-              justify="flex-end">
+              direction="row"
+              justify="center"
+              alignItems="center"
+            >
 
-
-              <Button variant="outlined"
-                disabled={movieNominations.includes(movie)}
-                onClick={(e) => { handleAddNomination(movie) }}
+              <Grid
+                item
+                xs={8}
+                container
+                justify="flex-start"
               >
-                Nominate
+                <Typography variant='subtitle2' component="h2">
+                  {movie.Title} ({movie.Year})
+                </Typography>
+              </Grid>
+              <Grid item xs={4} container
+                justify="flex-end">
+
+
+                <Button variant="outlined"
+                  disabled={movieNominations.includes(movie)}
+                  onClick={(e) => { handleAddNomination(movie) }}
+                  className={classes.addButton}
+                  size="small"
+                >
+                  Nominate
                   </Button>
+              </Grid>
             </Grid>
-          </Grid>
-        </ListItem>)
+          </ListItem>
+        </Grid>
+      )
     )
   }
   return (
     <>
       <Grid
         container
-        direction="row"
-        justify="flex-start"
-        alignItems="flex-start"
+        spacing={3}
+        item
+        style={{ padding: '30px 0px' }}
       >
         <Grid item xs={6}>
           <Paper variant="outlined" square>
-            <Typography variant="h6" component="h1">
+            <Typography variant="h6" component="h1" className={classes.resultsMovie}>
               Results for movie
           </Typography>
             <List>
@@ -92,7 +117,7 @@ const SearchResults: React.FC<Props> = ({ movieData }) => {
         <Snackbar open={open} autoHideDuration={3000} onClose={() => { setOpen(false) }} >
           <Alert severity="warning" onClose={() => { setOpen(false) }}>
             <AlertTitle>Warning</AlertTitle>
-            Delete one of your nominations to <strong> add this movie! </strong>
+            <strong>Delete </strong> one of your nominations to <strong> add this movie! </strong>
           </Alert>
         </Snackbar >
 
