@@ -50,12 +50,9 @@ const Nominations: React.FC<Props> = ({ nominationData }) => {
   useEffect(() => {
 
     const localNominations = JSON.parse(localStorage.getItem("nominations") || "[]")
-    console.log(localNominations)
 
-    if (window.performance && localNominations.length !== 0) {
-      if (performance.navigation.type == 1) {
-        setOpenDialog(true)
-      }
+    if (localNominations.length !== 0) {
+      setOpenDialog(true)
     }
     setNominations([...localNominations])
 
