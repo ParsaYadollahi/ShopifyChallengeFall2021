@@ -9,7 +9,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import InputAdornment from '@material-ui/core/InputAdornment';
 
 // utils
-import { NominationsContext } from '../utils/NominationsContext'
+import { NominationsContext, PopoverContext } from '../utils/MovieContext'
 
 // Components
 import SearchResults from "./SearchResults"
@@ -17,6 +17,7 @@ import SearchResults from "./SearchResults"
 const SearchBar: React.FC = () => {
 
   const [movieNominations, setNominations] = useState<IMovies[]>([])
+  const [anchorElPopover, setAnchorElPopover] = useState<EventTarget & HTMLElement | null>(null)
 
   const [movie, setMovieTitle] = useState<String>('')
   const [textFieldData, setTextFieldData] = useState<{ title: String }>({ title: '' })
@@ -94,9 +95,11 @@ const SearchBar: React.FC = () => {
             <NominationsContext.Provider
               value={{ movieNominations, setNominations }}
             >
-              <Grid item xs={12}>
-                <SearchResults movieTitle={movie} />
-              </Grid>
+              <PopoverContext.Provider value={{ anchorElPopover, setAnchorElPopover }}>
+                <Grid item xs={12}>
+                  <SearchResults movieTitle={movie} />
+                </Grid>
+              </PopoverContext.Provider>
 
             </NominationsContext.Provider>
 

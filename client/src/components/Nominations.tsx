@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react'
-import { NominationsContext } from '../utils/NominationsContext'
+import { NominationsContext } from '../utils/MovieContext'
 
 // MUI
 import Grid from "@material-ui/core/Grid"

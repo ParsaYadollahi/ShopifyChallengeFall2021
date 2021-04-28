@@ -13,20 +13,13 @@ import Alert from '@material-ui/lab/Alert';
 import AlertTitle from '@material-ui/lab/AlertTitle';
 import Divider from '@material-ui/core/Divider';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import Link from '@material-ui/core/Link';
-import Popover from '@material-ui/core/Popover';
-
-import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
-import CardMedia from '@material-ui/core/CardMedia';
-import CardContent from '@material-ui/core/CardContent';
-import CardActions from '@material-ui/core/CardActions'
 
 // Components
 import Nominations from "./Nominations"
+import PopoverPoster from "./PopoverPoster"
 
 // utils
-import { NominationsContext } from '../utils/NominationsContext'
+import { NominationsContext, PopoverContext } from '../utils/MovieContext'
 import { makeStyles } from '@material-ui/core/styles';
 import { Theme } from '@material-ui/core/styles/createMuiTheme';
 import themeFile from '../utils/theme';
@@ -62,12 +55,14 @@ const SearchResults: React.FC<Props> = ({ movieTitle }) => {
   const classes = useStyles();
 
   const { movieNominations, setNominations } = useContext(NominationsContext)
+  const { anchorElPopover, setAnchorElPopover } = useContext(PopoverContext)
+
   const [openAlert, setOpenAlert] = useState(false);
   const [openAlertError, setOpenAlertError] = useState(false);
   const [movies, setMovies] = useState<IMovies[]>([])
   const [loading, setLoading] = useState<Boolean>(false)
-  const [anchorElPopover, setAnchorElPopover] = React.useState<HTMLElement | null>(null);
   const [moviePopoverPoster, setmoviePopoverPoster] = React.useState<string>('');
+
 
 
   const handleAddNomination = (movieNomination: IMovies) => {
@@ -81,9 +76,8 @@ const SearchResults: React.FC<Props> = ({ movieTitle }) => {
   const handlePopover = (e: React.MouseEvent<HTMLElement, MouseEvent>, moviePoster: string) => {
     setmoviePopoverPoster(moviePoster)
     setAnchorElPopover(e.currentTarget);
+    console.log(e.currentTarget)
   };
-
-
 
   useEffect(() => {
     fetchMovie(movieTitle)
@@ -197,33 +191,7 @@ const SearchResults: React.FC<Props> = ({ movieTitle }) => {
           </Alert>
         </Snackbar >
 
-        <Popover
-          id="mouse-over-popover"
-          open={Boolean(anchorElPopover)}
-          anchorEl={anchorElPopover}
-          onClose={() => { setAnchorElPopover(null) }}
-          style={{ pointerEvents: 'none' }}
-          disableRestoreFocus
-          anchorOrigin={{
-            vertical: 'bottom',
-            horizontal: 'center',
-          }}
-          transformOrigin={{
-            vertical: 'top',
-            horizontal: 'center',
-          }}
-        >
-
-          <Card>
-            <CardMedia
-              style={{ width: '150px' }}
-              image={moviePopoverPoster}
-              component="img"
-              title="Movie poster"
-            />
-          </Card>
-
-        </Popover>
+        <PopoverPoster moviePopoverPoster={moviePopoverPoster} />
 
         <Grid item xs={6} container>
           <Nominations nominationData={movieNominations} />
