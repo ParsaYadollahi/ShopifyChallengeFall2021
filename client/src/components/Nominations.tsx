@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { NominationsContext } from '../utils/NominationsContext'
 
 // MUI
@@ -32,8 +32,17 @@ const Nominations: React.FC<Props> = ({ nominationData }) => {
 
   const classes = useStyles();
 
-
   const { movieNominations, setNominations } = useContext(NominationsContext)
+
+  useEffect(() => {
+    console.log("AAAAA")
+    const localNominations = JSON.parse(localStorage.getItem("nominations") || "[]")
+    setNominations([...localNominations])
+  }, [])
+
+  useEffect(() => {
+    localStorage.setItem("nominations", JSON.stringify(movieNominations))
+  }, [movieNominations])
 
   const handleDeleteNomination = (movieNomination: IMovies) => {
     setNominations(movieNominations.filter((deletedNomination) => deletedNomination.Title !== movieNomination.Title));
