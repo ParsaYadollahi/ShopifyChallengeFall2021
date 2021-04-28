@@ -56,7 +56,6 @@ const Nominations: React.FC<Props> = ({ nominationData }) => {
   const handlePopover = (e: React.MouseEvent<HTMLElement, MouseEvent>, moviePoster: string) => {
     setmoviePopoverPoster(moviePoster)
     setAnchorElPopover(e.currentTarget);
-    console.log(moviePoster)
   };
 
   useEffect(() => {
