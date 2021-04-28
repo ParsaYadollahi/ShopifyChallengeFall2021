@@ -56,6 +56,7 @@ const SearchResults: React.FC<Props> = ({ movieTitle }) => {
 
   const { movieNominations, setNominations } = useContext(NominationsContext)
   const [openAlert, setOpenAlert] = useState(false);
+  const [openAlertError, setOpenAlertError] = useState(false);
   const [movies, setMovies] = useState<IMovies[]>([])
   const [loading, setLoading] = useState<Boolean>(false)
 
@@ -76,13 +77,15 @@ const SearchResults: React.FC<Props> = ({ movieTitle }) => {
     getMovie(movieTitle)
       .then((movieData: IMovies[] | any) => {
         if (movieTitle !== '') {
-          console.log("aaaaa")
           setLoading(true)
+          if (movieData.data.Response === "False") {
+            setLoading(false)
+            setOpenAlertError(true)
+          }
         }
         setMovies([...movieData.data.Search])
         setLoading(false)
       })
-
       .catch((err: Error) => console.log(err))
   }
 
@@ -160,6 +163,13 @@ const SearchResults: React.FC<Props> = ({ movieTitle }) => {
           <Alert severity="warning" onClose={() => { setOpenAlert(false) }}>
             <AlertTitle>Warning</AlertTitle>
             <strong>Delete </strong> one of your nominations to <strong> add this movie! </strong>
+          </Alert>
+        </Snackbar >
+
+        <Snackbar open={openAlertError} autoHideDuration={2700} onClose={() => { setOpenAlertError(false) }} >
+          <Alert severity="error" onClose={() => { setOpenAlertError(false) }}>
+            <AlertTitle>Error</AlertTitle>
+            The movie <strong>{movieTitle}</strong> doesn't exist!
           </Alert>
         </Snackbar >
 
