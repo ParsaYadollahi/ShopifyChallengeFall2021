@@ -12,6 +12,7 @@ import Snackbar from '@material-ui/core/Snackbar';
 import Alert from '@material-ui/lab/Alert';
 import AlertTitle from '@material-ui/lab/AlertTitle';
 import Divider from '@material-ui/core/Divider';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 
 // Components
@@ -56,6 +57,8 @@ const SearchResults: React.FC<Props> = ({ movieTitle }) => {
   const { movieNominations, setNominations } = useContext(NominationsContext)
   const [openAlert, setOpenAlert] = useState(false);
   const [movies, setMovies] = useState<IMovies[]>([])
+  const [loading, setLoading] = useState<Boolean>(false)
+
 
   const handleAddNomination = (movieNomination: IMovies) => {
     if (movieNominations.length < 5) {
@@ -72,7 +75,12 @@ const SearchResults: React.FC<Props> = ({ movieTitle }) => {
   const fetchMovie = (movieTitle: String): void => {
     getMovie(movieTitle)
       .then((movieData: IMovies[] | any) => {
+        if (movieTitle !== '') {
+          console.log("aaaaa")
+          setLoading(true)
+        }
         setMovies([...movieData.data.Search])
+        setLoading(false)
       })
 
       .catch((err: Error) => console.log(err))
@@ -136,9 +144,15 @@ const SearchResults: React.FC<Props> = ({ movieTitle }) => {
             <Typography variant="h6" component="h1" className={classes.resultsMovie}>
               Results for movie
           </Typography>
-            <List>
-              {mapMovies()}
-            </List>
+            {!loading ? (
+              <List>
+                {mapMovies()}
+              </List>
+            ) : (
+              <Grid container justify="center">
+                <CircularProgress style={{ padding: 50, color: 'black' }} />
+              </Grid>
+            )}
           </Paper>
         </Grid>
 
