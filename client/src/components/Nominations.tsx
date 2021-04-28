@@ -8,6 +8,12 @@ import Paper from "@material-ui/core/Paper"
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import Button from "@material-ui/core/Button"
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import Slide from '@material-ui/core/Slide';
+import { TransitionProps } from '@material-ui/core/transitions';
+
 
 import { makeStyles } from '@material-ui/core/styles';
 import { Theme } from '@material-ui/core/styles/createMuiTheme';
@@ -27,17 +33,32 @@ const useStyles = makeStyles((theme: Theme & typeof themeFile) => {
   })
 });
 
+const dialogTransition = React.forwardRef(function Transition(
+  props: TransitionProps & { children?: React.ReactElement<any, any> },
+  ref: React.Ref<unknown>,
+) {
+  return <Slide direction="down" ref={ref} {...props} />;
+});
 
 const Nominations: React.FC<Props> = ({ nominationData }) => {
 
   const classes = useStyles();
 
   const { movieNominations, setNominations } = useContext(NominationsContext)
+  const [openDialog, setOpenDialog] = React.useState(false);
 
   useEffect(() => {
-    console.log("AAAAA")
+
     const localNominations = JSON.parse(localStorage.getItem("nominations") || "[]")
+    console.log(localNominations)
+
+    if (window.performance && localNominations.length !== 0) {
+      if (performance.navigation.type == 1) {
+        setOpenDialog(true)
+      }
+    }
     setNominations([...localNominations])
+
   }, [])
 
   useEffect(() => {
@@ -112,6 +133,26 @@ const Nominations: React.FC<Props> = ({ nominationData }) => {
         </Grid>
 
       </Grid >
+
+      <Dialog
+        open={openDialog}
+        keepMounted
+        TransitionComponent={dialogTransition}
+        onClick={() => { setOpenDialog(false) }}
+      >
+        <DialogTitle>Would you like to <strong>keep</strong> your previous nominations?</DialogTitle>
+        <DialogActions>
+          <Button onClick={() => { setOpenDialog(false) }}>
+            Keep
+          </Button>
+          <Button onClick={() => {
+            setOpenDialog(false)
+            setNominations([])
+          }}>
+            Clear
+          </Button>
+        </DialogActions>
+      </Dialog>
     </>
 
   )
