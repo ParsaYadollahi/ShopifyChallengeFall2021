@@ -9,7 +9,8 @@ type ApiDataType = {
 type IMovies = {
   Title: String,
   Year: String,
-  Poster: string
+  Poster: string,
+  imdbID: String
 }
 
 type contextNomination = {

@@ -76,7 +76,6 @@ const SearchResults: React.FC<Props> = ({ movieTitle }) => {
   const handlePopover = (e: React.MouseEvent<HTMLElement, MouseEvent>, moviePoster: string) => {
     setmoviePopoverPoster(moviePoster)
     setAnchorElPopover(e.currentTarget);
-    console.log(e.currentTarget)
   };
 
   useEffect(() => {
@@ -97,6 +96,16 @@ const SearchResults: React.FC<Props> = ({ movieTitle }) => {
         setLoading(false)
       })
       .catch((err: Error) => console.log(err))
+  }
+
+  const nominationsContainMovie = (movieimdbID: String) => {
+    let nominationsContainMovie = false
+    movieNominations.forEach((m) => {
+      if (m.imdbID === movieimdbID) {
+        return nominationsContainMovie = true
+      }
+    })
+    return nominationsContainMovie
   }
 
   const mapMovies = () => {
@@ -138,7 +147,7 @@ const SearchResults: React.FC<Props> = ({ movieTitle }) => {
 
 
                 <Button variant="outlined"
-                  disabled={movieNominations.includes(movie)}
+                  disabled={nominationsContainMovie(movie.imdbID)}
                   onClick={(e) => { handleAddNomination(movie) }}
                   className={classes.addButton}
                   size="small"
