@@ -8,7 +8,7 @@ Movie nominations
 
 <p align="center"><sup><i>Home page</i></sup></p>
 
-The Shoppies is my submission for the Shopify Frontend Developer challenge for Fall 2021.
+The Shoppies is my submission for the Shopify Frontend Developer Internship challenge for Fall 2021.
 Check it out at [https://shopify-challenge-fall-2021.web.app/](https://shopify-challenge-fall-2021.web.app/).
 
 ## The Challenge
