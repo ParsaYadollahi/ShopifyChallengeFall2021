@@ -102,9 +102,11 @@ const Nominations: React.FC<Props> = ({ nominationData }) => {
                   aria-owns={Boolean(anchorElPopover) ? 'mouse-over-popover' : undefined}
                   aria-haspopup="true"
                   onMouseEnter={(e: any) => { handlePopover(e, nomination.Poster) }}
-                  onMouseLeave={() => { setAnchorElPopover(null) }}>
+                  onMouseLeave={() => { setAnchorElPopover(null); setmoviePopoverPoster('') }}
+                >
                   {nomination.Title} ({nomination.Year})
                 </Typography>
+                <PopoverPoster moviePopoverPoster={moviePopoverPoster} />
               </Grid>
               <Grid item xs={4} container
                 justify="flex-end">
@@ -164,8 +166,6 @@ const Nominations: React.FC<Props> = ({ nominationData }) => {
           </Button>
         </DialogActions>
       </Dialog>
-
-      <PopoverPoster moviePopoverPoster={moviePopoverPoster} />
     </>
 
   )

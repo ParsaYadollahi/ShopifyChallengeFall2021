@@ -16,33 +16,37 @@ const PopoverPoster: React.FC<Props> = ({ moviePopoverPoster }) => {
   const { anchorElPopover, setAnchorElPopover } = useContext(PopoverContext)
 
   return (
-    <Popover
-      id="mouse-over-popover"
-      open={Boolean(anchorElPopover)}
-      anchorEl={anchorElPopover}
-      onClose={() => { setAnchorElPopover(null) }}
-      style={{ pointerEvents: 'none' }}
-      disableRestoreFocus
-      anchorOrigin={{
-        vertical: 'bottom',
-        horizontal: 'center',
-      }}
-      transformOrigin={{
-        vertical: 'top',
-        horizontal: 'center',
-      }}
-    >
+    moviePopoverPoster !== '' ? (
+      <Popover
+        id="mouse-over-popover"
+        open={Boolean(anchorElPopover)}
+        anchorEl={anchorElPopover}
+        onClose={() => { setAnchorElPopover(null) }}
+        style={{ pointerEvents: 'none' }}
+        disableRestoreFocus
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'center',
+        }}
+        transformOrigin={{
+          vertical: 'top',
+          horizontal: 'center',
+        }}
+      >
 
-      <Card>
-        <CardMedia
-          style={{ width: '150px' }}
-          image={moviePopoverPoster}
-          component="img"
-          title="Movie poster"
-        />
-      </Card>
+        <Card>
+          <CardMedia
+            style={{ width: '150px' }}
+            src={moviePopoverPoster}
+            component="img"
+            title="Movie poster"
+          />
+        </Card>
 
-    </Popover>
+      </Popover>
+    ) : (
+      <> </>
+    )
   )
 
 }
