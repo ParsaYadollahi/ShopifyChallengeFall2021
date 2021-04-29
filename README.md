@@ -39,7 +39,6 @@ In addition to these requirements, the following features we're implemented:
 ## Hosting
 
 The project is hosted on [Firebase Hosting](https://firebase.google.com/products/hosting/) at [https://shopify-challenge-fall-2021.web.app/](https://shopify-challenge-fall-2021.web.app/).
-There is continuous deployment from the repo to Firebase using GitHub Actions.
 
 ## Preview
 
@@ -51,7 +50,7 @@ Please visit [https://shopify-challenge-fall-2021.web.app/](https://shopify-chal
 
 ![Movie details screenshot](client/public/images/resultpagedialog.png)
 
-<p align="center"><sup><i>Full page screenshot of nominate page</i></sup></p>
+<p align="center"><sup><i>Dialog page screenshot</i></sup></p>
 
 ## Technologies Used
 
