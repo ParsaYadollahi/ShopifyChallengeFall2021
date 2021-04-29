@@ -32,7 +32,9 @@ The main objectives were to complete the following.
 > 5. If a search result has already been nominated, disable its nominate button.
 > 6. Display a banner when the user has 5 nominations.
 
-In addition to these requirements, saving nomination lists to a database was implemented so users can keep their data if they leave the page.
+In addition to these requirements, the following features we're implemented:
+- Saving nomination lists to their local storage implemented so users can keep their data if they leave the page.
+- Animations for loading, adding/deleting movies and notifications when there occurs and error
 
 ## Hosting
 
