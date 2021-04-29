@@ -81,7 +81,7 @@ There are three commands available:
 # create a production build:
 npm run build
 
-# start a production server:
+# start a production server on port 3000:
 npm start
 
 # run nightwatch tests
