@@ -11,10 +11,12 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Slide from '@material-ui/core/Slide';
+import Link from "@material-ui/core/Link"
 import { TransitionProps } from '@material-ui/core/transitions';
 
 // Components
 import PopoverPoster from "./PopoverPoster"
+import MovieInfoDialog from "./MovieInfoDialog"
 
 // utils
 import { NominationsContext, PopoverContext } from '../utils/MovieContext'
@@ -52,6 +54,7 @@ const Nominations: React.FC<Props> = ({ nominationData }) => {
   const [moviePopoverPoster, setmoviePopoverPoster] = React.useState<string>('');
 
   const [openDialog, setOpenDialog] = React.useState(false);
+  const [movieId, setMovieId] = React.useState<String>('');
 
   const handlePopover = (e: React.MouseEvent<HTMLElement, MouseEvent>, moviePoster: string) => {
     setmoviePopoverPoster(moviePoster)
@@ -72,6 +75,11 @@ const Nominations: React.FC<Props> = ({ nominationData }) => {
 
   const handleDeleteNomination = (movieNomination: IMovies) => {
     setNominations(movieNominations.filter((deletedNomination) => deletedNomination.Title !== movieNomination.Title));
+  }
+
+  const openDialogMovie = (movieimdbID: String) => {
+    setMovieId(movieimdbID)
+    setOpenDialog(true)
   }
 
   const mapNominations = () => {
@@ -104,7 +112,9 @@ const Nominations: React.FC<Props> = ({ nominationData }) => {
                   onMouseEnter={(e: any) => { handlePopover(e, nomination.Poster) }}
                   onMouseLeave={() => { setAnchorElPopover(null); setmoviePopoverPoster('') }}
                 >
-                  {nomination.Title} ({nomination.Year})
+                  <Link color="inherit" onClick={() => { openDialogMovie(nomination.imdbID) }}>
+                    {nomination.Title} ({nomination.Year})
+                  </Link>
                 </Typography>
               </Grid>
               <Grid item xs={4} container
@@ -169,6 +179,7 @@ const Nominations: React.FC<Props> = ({ nominationData }) => {
         </DialogActions>
       </Dialog>
       <PopoverPoster moviePopoverPoster={moviePopoverPoster} />
+      <MovieInfoDialog openDialog={openDialog} onClose={() => { setOpenDialog(false) }} movieId={movieId} button={"Remove"} />
     </>
 
   )

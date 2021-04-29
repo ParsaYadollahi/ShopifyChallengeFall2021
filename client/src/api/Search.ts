@@ -14,9 +14,9 @@ export const getMovie = async (movieTitle: String): Promise<AxiosResponse<ApiDat
 };
 
 
-export const getMovieById = async (movieId: String): Promise<AxiosResponse<ApiDataType>> => {
+export const getMovieById = async (movieId: String): Promise<AxiosResponse<ApiDataTypeId>> => {
   try {
-    const movieData: AxiosResponse<ApiDataType> = await axios.get(
+    const movieData: AxiosResponse<ApiDataTypeId> = await axios.get(
       baseUrl + "i=" + movieId
     )
     return movieData

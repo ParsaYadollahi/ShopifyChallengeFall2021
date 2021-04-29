@@ -55,6 +55,7 @@ const SearchResults: React.FC<Props> = ({ movieTitle }) => {
   const [moviePopoverPoster, setmoviePopoverPoster] = React.useState<string>('');
 
   const [openDialog, setOpenDialog] = React.useState(false);
+  const [movieId, setMovieId] = React.useState<String>('');
 
 
 
@@ -89,6 +90,11 @@ const SearchResults: React.FC<Props> = ({ movieTitle }) => {
         setLoading(false)
       })
       .catch((err: Error) => console.log(err))
+  }
+
+  const openDialogMovie = (movieimdbID: String) => {
+    setMovieId(movieimdbID)
+    setOpenDialog(true)
   }
 
   const nominationsContainMovie = (movieimdbID: String) => {
@@ -132,7 +138,7 @@ const SearchResults: React.FC<Props> = ({ movieTitle }) => {
                   onMouseLeave={() => { setAnchorElPopover(null) }}
 
                 >
-                  <Link color="inherit" onClick={() => { setOpenDialog(true) }}>
+                  <Link color="inherit" onClick={() => { openDialogMovie(movie.imdbID) }}>
                     {movie.Title} ({movie.Year})
                   </Link>
                 </Typography>
@@ -142,7 +148,7 @@ const SearchResults: React.FC<Props> = ({ movieTitle }) => {
 
 
                 <Button variant="outlined"
-                  disabled={nominationsContainMovie(movie.imdbID)}
+                  disabled={nominationsContainMovie(movie.imdbID) || movieNominations.length >= 5}
                   onClick={(e) => { handleAddNomination(movie) }}
                   className={classes.addButton}
                   size="small"
@@ -197,7 +203,7 @@ const SearchResults: React.FC<Props> = ({ movieTitle }) => {
         </Snackbar >
 
         <PopoverPoster moviePopoverPoster={moviePopoverPoster} />
-        <MovieInfoDialog openDialog={openDialog} onClose={() => { setOpenDialog(false) }} />
+        <MovieInfoDialog openDialog={openDialog} onClose={() => { setOpenDialog(false) }} movieId={movieId} button={"Nominate"} />
 
         <Grid item xs={6} container>
           <Nominations nominationData={movieNominations} />
