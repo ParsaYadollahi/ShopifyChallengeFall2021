@@ -106,7 +106,6 @@ const Nominations: React.FC<Props> = ({ nominationData }) => {
                 >
                   {nomination.Title} ({nomination.Year})
                 </Typography>
-                <PopoverPoster moviePopoverPoster={moviePopoverPoster} />
               </Grid>
               <Grid item xs={4} container
                 justify="flex-end">
@@ -169,6 +168,7 @@ const Nominations: React.FC<Props> = ({ nominationData }) => {
           </Button>
         </DialogActions>
       </Dialog>
+      <PopoverPoster moviePopoverPoster={moviePopoverPoster} />
     </>
 
   )

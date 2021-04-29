@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useContext } from 'react'
-import axios, { AxiosResponse } from 'axios'
 
 // MUI
 import Grid from "@material-ui/core/Grid"
@@ -13,16 +12,21 @@ import Alert from '@material-ui/lab/Alert';
 import AlertTitle from '@material-ui/lab/AlertTitle';
 import Divider from '@material-ui/core/Divider';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import Link from "@material-ui/core/Link"
 
 // Components
 import Nominations from "./Nominations"
 import PopoverPoster from "./PopoverPoster"
+import MovieInfoDialog from "./MovieInfoDialog"
 
 // utils
 import { NominationsContext, PopoverContext } from '../utils/MovieContext'
 import { makeStyles } from '@material-ui/core/styles';
 import { Theme } from '@material-ui/core/styles/createMuiTheme';
 import themeFile from '../utils/theme';
+
+// API
+import { getMovie } from "./../api/Search"
 
 
 type Props = {
@@ -37,19 +41,6 @@ const useStyles = makeStyles((theme: Theme & typeof themeFile) => {
   })
 });
 
-const baseUrl = "https://www.omdbapi.com/?apikey=4b14c67e&s="
-
-const getMovie = async (movieTitle: String): Promise<AxiosResponse<ApiDataType>> => {
-  try {
-    const movieData: AxiosResponse<ApiDataType> = await axios.get(
-      baseUrl + movieTitle
-    )
-    return movieData
-  } catch (error) {
-    throw new Error(error);
-  }
-};
-
 const SearchResults: React.FC<Props> = ({ movieTitle }) => {
 
   const classes = useStyles();
@@ -62,6 +53,8 @@ const SearchResults: React.FC<Props> = ({ movieTitle }) => {
   const [movies, setMovies] = useState<IMovies[]>([])
   const [loading, setLoading] = useState<Boolean>(false)
   const [moviePopoverPoster, setmoviePopoverPoster] = React.useState<string>('');
+
+  const [openDialog, setOpenDialog] = React.useState(false);
 
 
 
@@ -139,7 +132,9 @@ const SearchResults: React.FC<Props> = ({ movieTitle }) => {
                   onMouseLeave={() => { setAnchorElPopover(null) }}
 
                 >
-                  {movie.Title} ({movie.Year})
+                  <Link color="inherit" onClick={() => { setOpenDialog(true) }}>
+                    {movie.Title} ({movie.Year})
+                  </Link>
                 </Typography>
               </Grid>
               <Grid item xs={4} container
@@ -202,6 +197,7 @@ const SearchResults: React.FC<Props> = ({ movieTitle }) => {
         </Snackbar >
 
         <PopoverPoster moviePopoverPoster={moviePopoverPoster} />
+        <MovieInfoDialog openDialog={openDialog} onClose={() => { setOpenDialog(false) }} />
 
         <Grid item xs={6} container>
           <Nominations nominationData={movieNominations} />
