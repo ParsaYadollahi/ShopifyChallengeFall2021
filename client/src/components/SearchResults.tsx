@@ -186,17 +186,17 @@ const SearchResults: React.FC<Props> = ({ movieTitle }) => {
           </Paper>
         </Grid>
 
-        <Snackbar open={openAlert} autoHideDuration={3000} onClose={() => { setOpenAlert(false) }} >
+        <Snackbar open={openAlert} autoHideDuration={3000} onClose={() => { setOpenAlert(false) }} id="snackBarWarning" >
           <Alert severity="warning" onClose={() => { setOpenAlert(false) }}>
             <AlertTitle>Warning</AlertTitle>
-            <strong>Delete </strong> one of your nominations to <strong> add this movie! </strong>
+            <strong id="strongMovieTitleWarning" >Delete </strong> one of your nominations to <strong> add this movie! </strong>
           </Alert>
         </Snackbar >
 
-        <Snackbar open={openAlertError} autoHideDuration={2700} onClose={() => { setOpenAlertError(false) }} >
+        <Snackbar open={openAlertError} autoHideDuration={2700} onClose={() => { setOpenAlertError(false) }} id="snackBarError" >
           <Alert severity="error" onClose={() => { setOpenAlertError(false) }}>
             <AlertTitle>Error</AlertTitle>
-            The movie <strong>{movieTitle}</strong> doesn't exist!
+            The movie <strong id="strongMovieTitleError">{movieTitle}</strong> doesn't exist!
           </Alert>
         </Snackbar >
 
