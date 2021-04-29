@@ -114,6 +114,7 @@ const Nominations: React.FC<Props> = ({ nominationData }) => {
                   onClick={(e) => { handleDeleteNomination(nomination) }}
                   className={classes.removeButton}
                   size="small"
+                  id={`deleteButton${k}`}
                 >
                   Remove
                   </Button>
@@ -153,15 +154,17 @@ const Nominations: React.FC<Props> = ({ nominationData }) => {
         TransitionComponent={dialogTransition}
         onClick={() => { setOpenDialog(false) }}
       >
-        <DialogTitle>Would you like to <strong>keep</strong> your previous nominations?</DialogTitle>
+        <DialogTitle id="dialogKeep">Would you like to <strong>keep</strong> your previous nominations?</DialogTitle>
         <DialogActions>
-          <Button onClick={() => { setOpenDialog(false) }}>
+          <Button onClick={() => { setOpenDialog(false) }} id="buttonKeep">
             Keep
           </Button>
-          <Button onClick={() => {
-            setOpenDialog(false)
-            setNominations([])
-          }}>
+          <Button
+            id="buttonClear"
+            onClick={() => {
+              setOpenDialog(false)
+              setNominations([])
+            }}>
             Clear
           </Button>
         </DialogActions>

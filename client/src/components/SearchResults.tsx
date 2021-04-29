@@ -151,6 +151,7 @@ const SearchResults: React.FC<Props> = ({ movieTitle }) => {
                   onClick={(e) => { handleAddNomination(movie) }}
                   className={classes.addButton}
                   size="small"
+                  id={`button${k}`}
                 >
                   Nominate
                   </Button>

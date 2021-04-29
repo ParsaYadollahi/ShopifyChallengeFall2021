@@ -1,17 +1,28 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <testsuites errors="0"
-            failures="0"
+            failures="1"
             tests="1">
 
   <testsuite name="test1"
-    errors="0" failures="0" hostname="" id="" package="test1" skipped="0"
-    tests="1" time="3.443" timestamp="">
+    errors="0" failures="1" hostname="" id="" package="test1" skipped="1"
+    tests="1" time="7.289" timestamp="">
   
-    <testcase name="Non-existing movie test" classname="test1" time="3.443" assertions="3">
+    <testcase name="adding-and-deleteing-movies test" classname="test1" time="7.289" assertions="8">
 
     
 
     
+
+    
+
+    
+
+    
+
+    
+
+      <failure message="Testing if element &lt;#snackBarWarning&gt; is present in 5000ms - expected &#34;is present&#34; but got: &#34;not present&#34; (5129ms)">    at Object.adding-and-deleteing-movies test (/Users/parsa/dev/ShopifyChallengeFall2021/client/src/test/test1.js:87:21)
+    at processTicksAndRejections (node:internal/process/task_queues:93:5)</failure>
 
     
     </testcase>
@@ -21,6 +32,13 @@
 
     
 
+  
+    
+    <testcase
+      name="local-storage-keep test" classname="test1">
+      <skipped />
+    </testcase>
+    
   
   </testsuite>
 </testsuites>
