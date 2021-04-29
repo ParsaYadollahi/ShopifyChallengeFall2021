@@ -22,34 +22,42 @@ const themeFile = {
 
   addButton: {
     padding: '6px 20px',
-    backgroundColor: '#ffffff',
-    color: '#0F9D58',
+    backgroundColor: '#333533',
+    color: '#95bf47',
     boxShadow: 'none',
-    border: '1px solid #0F9D58',
+    border: '1px solid #95bf47',
+    maxWidth: '30px',
+    maxHeight: '30px',
+    fontSize: '8px',
     '&:hover': {
-      backgroundColor: '#dcfcdf',
+      backgroundColor: '#3d4a3d',
       boxShadow: 'none',
     },
   },
   removeButton: {
+    backgroundColor: '#333533',
     padding: '6px 20px',
-    backgroundColor: '#ffffff',
-    color: '#DB4437',
+    color: '#9c4941',
     boxShadow: 'none',
-    border: '1px solid #DB4437',
+    border: '1px solid #9c4941',
+    maxWidth: '30px',
+    maxHeight: '30px',
+    fontSize: '8px',
     '&:hover': {
-      backgroundColor: '#ffd1d1',
+      backgroundColor: '#4a3a3a',
       boxShadow: 'none',
     },
   },
 
   resultTitles: {
     fontWeigth: 500,
-    padding: '20px 20px 5px 20px'
+    padding: '20px 20px 5px 20px',
+    color: '#d9ded1',
   },
 
   resultsLists: {
-    padding: "0px 25px"
+    padding: "0px 25px",
+    color: '#d9ded1',
   },
 
 };

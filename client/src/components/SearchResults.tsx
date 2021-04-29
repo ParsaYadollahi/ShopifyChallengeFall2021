@@ -37,7 +37,7 @@ const useStyles = makeStyles((theme: Theme & typeof themeFile) => {
   return ({
     addButton: theme.addButton,
     resultsMovie: theme.resultTitles,
-    resultsList: theme.resultsLists
+    resultsList: theme.resultsLists,
   })
 });
 
@@ -62,7 +62,8 @@ const SearchResults: React.FC<Props> = ({ movieTitle }) => {
   const handleAddNomination = (movieNomination: IMovies) => {
     if (movieNominations.length < 5) {
       setNominations([...movieNominations, movieNomination])
-    } else {
+    }
+    if (movieNominations.length == 4) {
       setOpenAlert(true)
     }
   }
@@ -136,10 +137,11 @@ const SearchResults: React.FC<Props> = ({ movieTitle }) => {
                   aria-haspopup="true"
                   onMouseEnter={(e: any) => { handlePopover(e, movie.Poster) }}
                   onMouseLeave={() => { setAnchorElPopover(null) }}
+                  style={{ color: '#d9ded1', }}
 
                 >
                   <Link color="inherit" onClick={() => { openDialogMovie(movie.imdbID) }}>
-                    {movie.Title} ({movie.Year})
+                    <strong>{movie.Title}</strong> ({movie.Year})
                   </Link>
                 </Typography>
               </Grid>
@@ -172,7 +174,7 @@ const SearchResults: React.FC<Props> = ({ movieTitle }) => {
         style={{ padding: '30px 0px' }}
       >
         <Grid item xs={6}>
-          <Paper variant="outlined" square>
+          <Paper variant="outlined" square style={{ backgroundColor: '#333533' }}>
             <Typography variant="h6" component="h1" className={classes.resultsMovie}>
               Results for movie
           </Typography>
@@ -188,10 +190,10 @@ const SearchResults: React.FC<Props> = ({ movieTitle }) => {
           </Paper>
         </Grid>
 
-        <Snackbar open={openAlert} autoHideDuration={3000} onClose={() => { setOpenAlert(false) }} id="snackBarWarning" >
-          <Alert severity="warning" onClose={() => { setOpenAlert(false) }}>
+        <Snackbar open={openAlert} autoHideDuration={4000} onClose={() => { setOpenAlert(false) }} id="snackBarWarning" >
+          <Alert severity="info" onClose={() => { setOpenAlert(false) }}>
             <AlertTitle>Warning</AlertTitle>
-            <strong id="strongMovieTitleWarning" >Delete </strong> one of your nominations to <strong> add this movie! </strong>
+            You've react a max of 5 total nominations. <strong id="strongMovieTitleWarning" >Delete </strong> one of your nominations to <strong> add another movie! </strong>
           </Alert>
         </Snackbar >
 

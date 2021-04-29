@@ -10,11 +10,41 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 
 // utils
 import { NominationsContext, PopoverContext } from '../utils/MovieContext'
+import { makeStyles } from '@material-ui/core/styles';
+import { Theme } from '@material-ui/core/styles/createMuiTheme';
+import themeFile from '../utils/theme';
 
 // Components
 import SearchResults from "./SearchResults"
 
+const useStyles = makeStyles((theme: Theme & typeof themeFile) => {
+  return ({
+    cssOutlinedInput: {
+      '&$cssFocused $notchedOutline': {
+        borderColor: `${theme.palette.primary.main} !important`,
+      }
+    },
+    notchedOutline: {
+      borderWidth: '1px',
+      borderColor: '#d9ded1 !important'
+    },
+    cssLabel: {
+      color: '#d9ded1',
+    },
+    cssFocused: {
+      color: '#d9ded1',
+      borderColor: '#d9ded1 !important'
+    },
+    input: {
+      color: '#d9ded1'
+    }
+
+  })
+});
+
 const SearchBar: React.FC = () => {
+
+  const classes = useStyles()
 
   const [movieNominations, setNominations] = useState<IMovies[]>([])
   const [anchorElPopover, setAnchorElPopover] = useState<EventTarget & HTMLElement | null>(null)
@@ -49,7 +79,7 @@ const SearchBar: React.FC = () => {
         style={{ margin: '30px 0px' }}
       >
         <Grid item xs={12}>
-          <Paper variant="outlined" square>
+          <Paper variant="outlined" square style={{ backgroundColor: '#333533' }}>
 
             <Grid
               container
@@ -59,7 +89,7 @@ const SearchBar: React.FC = () => {
               style={{ padding: '30px' }}
             >
               <Grid item xs={12}>
-                <Typography>
+                <Typography style={{ color: '#d9ded1' }}>
                   Movie title
                 </Typography>
                 <TextField
@@ -72,12 +102,27 @@ const SearchBar: React.FC = () => {
                   fullWidth
                   onChange={handleTextField}
                   onKeyPress={handleKeywordKeyPress}
+                  style={{ color: '#d9ded1' }}
+
+
+                  InputLabelProps={{
+                    classes: {
+                      root: classes.cssLabel,
+                      focused: classes.cssFocused,
+                    },
+                  }}
                   InputProps={{
                     startAdornment: (
                       <InputAdornment position="start">
-                        <SearchIcon />
+                        <SearchIcon style={{ color: '#d9ded1' }} />
                       </InputAdornment>
-                    )
+                    ),
+                    classes: {
+                      root: classes.cssOutlinedInput,
+                      focused: classes.cssFocused,
+                      notchedOutline: classes.notchedOutline,
+                      input: classes.input
+                    }
                   }}
                 />
 

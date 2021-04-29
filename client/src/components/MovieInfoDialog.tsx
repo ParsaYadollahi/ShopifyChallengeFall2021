@@ -30,21 +30,21 @@ const useStyles = makeStyles((theme: Theme & typeof themeFile) => {
   return ({
     removeButton: {
       padding: '6px 20px',
-      backgroundColor: '#ffffff',
-      color: '#DB4437',
+      backgroundColor: '#333533',
+      color: '#9c4941',
       boxShadow: 'none',
       '&:hover': {
-        backgroundColor: '#ffd1d1',
+        backgroundColor: '#4a3a3a',
         boxShadow: 'none',
       },
     },
     addButton: {
       padding: '6px 20px',
-      backgroundColor: '#ffffff',
-      color: '#0F9D58',
+      backgroundColor: '#333533',
+      color: '#95bf47',
       boxShadow: 'none',
       '&:hover': {
-        backgroundColor: '#dcfcdf',
+        backgroundColor: '#3d4a3d',
         boxShadow: 'none',
       },
     },
@@ -101,11 +101,11 @@ const MovieInfoDialog = (props: SimpleDialogProps) => {
     return (
       mapData.map((prop, k) =>
         <Grid item key={k} style={{ padding: "5px 0px" }}>
-          <Typography variant="body1" style={{ fontSize: '12px', fontWeight: 600 }}>
+          <Typography variant="body1" style={{ fontSize: '12px', fontWeight: 600, color: '#d9ded1' }}>
             {prop}
           </Typography>
           {k !== 6 ? (
-            <Typography variant="caption" style={{ fontSize: '10px', padding: '20px 0px' }}>
+            <Typography variant="caption" style={{ fontSize: '10px', padding: '20px 0px', color: '#d9ded1' }}>
               {titles[k]}
             </Typography>
           ) : (
@@ -123,7 +123,9 @@ const MovieInfoDialog = (props: SimpleDialogProps) => {
         <Button
           className={classes.addButton}
           disabled={nominationsContainMovie(movieData?.imdbID) || movieNominations.length >= 5}
-          onClick={() => { handleAddNomination(movieData!) }}
+          onClick={() => {
+            handleAddNomination(movieData!)
+          }}
         >
           {button}
         </Button>
@@ -140,43 +142,48 @@ const MovieInfoDialog = (props: SimpleDialogProps) => {
 
 
   return (
-    <Dialog
-      onClose={onClose}
-      aria-labelledby="simple-dialog-title"
-      open={openDialog}
-    >
-      <Card>
-        <Grid
-          container
-          direction="row"
-          justify="center"
-          alignItems="center"
-        >
-          <Grid item xs={12} style={{ padding: '20px 0px 0px 20px' }}>
-            <Typography variant="h6" style={{ fontWeight: 600 }}>
-              Movie Details - {movieData?.Title} ({movieData?.Year})
+    movieId !== '' ? (
+      <Dialog
+        onClose={onClose}
+        aria-labelledby="simple-dialog-title"
+        open={openDialog}
+      >
+        <Card style={{ backgroundColor: '#333533', }}>
+          <Grid
+            container
+            direction="row"
+            justify="center"
+            alignItems="center"
+          >
+            <Grid item xs={12} style={{ padding: '20px 0px 0px 20px' }}>
+              <Typography variant="h6" style={{
+                fontWeight: 600, color: '#95bf47'
+              }}>
+                Movie Details - {movieData?.Title} ({movieData?.Year})
             </Typography>
-          </Grid>
-          <Grid item xs={5}>
-            <CardMedia
-              style={{ padding: 10 }}
-              src={movieData?.Poster}
-              title="Movie Poster"
-              component="img"
-            />
-          </Grid>
-          <Grid item xs={7} style={{ padding: 10 }}>
-            <CardContent style={{ padding: "10px 25px" }}>
-              {displayData()}
-            </CardContent>
+            </Grid>
+            <Grid item xs={5}>
+              <CardMedia
+                style={{ padding: 10 }}
+                src={movieData?.Poster}
+                title="Movie Poster"
+                component="img"
+              />
+            </Grid>
+            <Grid item xs={7} style={{ padding: 10 }}>
+              <CardContent style={{ padding: "10px 25px" }}>
+                {displayData()}
+              </CardContent>
 
-            <Grid container justify="flex-end" item xs={12} style={{ padding: 10 }}>
-              {displayButton(button)}
+              <Grid container justify="flex-end" item xs={12} style={{ padding: 10 }}>
+                {displayButton(button)}
+              </Grid>
             </Grid>
           </Grid>
-        </Grid>
-      </Card>
-    </Dialog >
+        </Card>
+      </Dialog >
+    ) :
+      <> </>
   )
 
 

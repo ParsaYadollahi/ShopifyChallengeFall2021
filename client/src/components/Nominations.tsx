@@ -111,9 +111,10 @@ const Nominations: React.FC<Props> = ({ nominationData }) => {
                   aria-haspopup="true"
                   onMouseEnter={(e: any) => { handlePopover(e, nomination.Poster) }}
                   onMouseLeave={() => { setAnchorElPopover(null); setmoviePopoverPoster('') }}
+                  style={{ color: '#d9ded1', }}
                 >
                   <Link color="inherit" onClick={() => { openDialogMovie(nomination.imdbID) }}>
-                    {nomination.Title} ({nomination.Year})
+                    <strong>{nomination.Title}</strong> ({nomination.Year})
                   </Link>
                 </Typography>
               </Grid>
@@ -145,7 +146,7 @@ const Nominations: React.FC<Props> = ({ nominationData }) => {
         justify="flex-start"
       >
         <Grid item xs={12}>
-          <Paper variant="outlined" square>
+          <Paper variant="outlined" square style={{ backgroundColor: '#333533' }}>
             <Typography variant="h6" component="h1" className={classes.resultNominations}>
               Nominations
           </Typography>
@@ -173,7 +174,8 @@ const Nominations: React.FC<Props> = ({ nominationData }) => {
             onClick={() => {
               setOpenDialog(false)
               setNominations([])
-            }}>
+            }}
+          >
             Clear
           </Button>
         </DialogActions>

@@ -6,6 +6,7 @@ import SearchBar from "./components/SearchBar"
 // MUI
 import Grid from "@material-ui/core/Grid"
 import Typography from "@material-ui/core/Typography"
+import ShopIcon from '@material-ui/icons/Shop';
 
 // Theme
 import themeFile from './utils/theme';
@@ -20,7 +21,8 @@ const useStyles = makeStyles((theme: Theme & typeof themeFile) => {
   return ({
     title: {
       padding: '100px 0px 15px 0px',
-      fontWeight: 500
+      fontWeight: 500,
+      color: '#95bf47'
     }
   })
 });
@@ -41,6 +43,7 @@ function App() {
           <Grid item xs={10}
           >
             <Typography variant="h4" component="h1" className={classes.title}>
+              <ShopIcon style={{ color: '#95bf47', fontSize: 50, verticalAlign: 'middle' }} />
               The Shoppies
           </Typography>
 
