@@ -60,6 +60,27 @@ const themeFile = {
     color: '#d9ded1',
   },
 
+  removeButtonDialog: {
+    padding: '6px 20px',
+    backgroundColor: '#333533',
+    color: '#9c4941',
+    boxShadow: 'none',
+    '&:hover': {
+      backgroundColor: '#4a3a3a',
+      boxShadow: 'none',
+    },
+  },
+  addButtonDialog: {
+    padding: '6px 20px',
+    backgroundColor: '#333533',
+    color: '#95bf47',
+    boxShadow: 'none',
+    '&:hover': {
+      backgroundColor: '#3d4a3d',
+      boxShadow: 'none',
+    },
+  },
+
 };
 
 

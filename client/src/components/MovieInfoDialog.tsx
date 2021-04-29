@@ -3,10 +3,8 @@ import React, { useState, useEffect, useContext } from 'react'
 import Dialog from '@material-ui/core/Dialog';
 import Button from "@material-ui/core/Button"
 import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
-import CardActions from '@material-ui/core/CardActions';
 import Grid from "@material-ui/core/Grid"
 import Typography from "@material-ui/core/Typography"
 
@@ -28,26 +26,8 @@ export interface SimpleDialogProps {
 
 const useStyles = makeStyles((theme: Theme & typeof themeFile) => {
   return ({
-    removeButton: {
-      padding: '6px 20px',
-      backgroundColor: '#333533',
-      color: '#9c4941',
-      boxShadow: 'none',
-      '&:hover': {
-        backgroundColor: '#4a3a3a',
-        boxShadow: 'none',
-      },
-    },
-    addButton: {
-      padding: '6px 20px',
-      backgroundColor: '#333533',
-      color: '#95bf47',
-      boxShadow: 'none',
-      '&:hover': {
-        backgroundColor: '#3d4a3d',
-        boxShadow: 'none',
-      },
-    },
+    removeButton: theme.removeButtonDialog,
+    addButton: theme.addButtonDialog
   })
 });
 

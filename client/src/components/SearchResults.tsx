@@ -63,7 +63,7 @@ const SearchResults: React.FC<Props> = ({ movieTitle }) => {
     if (movieNominations.length < 5) {
       setNominations([...movieNominations, movieNomination])
     }
-    if (movieNominations.length == 4) {
+    if (movieNominations.length === 4) {
       setOpenAlert(true)
     }
   }

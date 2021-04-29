@@ -34,7 +34,9 @@ const useStyles = makeStyles((theme: Theme & typeof themeFile) => {
   return ({
     removeButton: theme.removeButton,
     resultNominations: theme.resultTitles,
-    resultsList: theme.resultsLists
+    resultsList: theme.resultsLists,
+    removeButtonDialog: theme.removeButtonDialog,
+    addButtonDialog: theme.addButtonDialog
   })
 });
 
@@ -164,21 +166,24 @@ const Nominations: React.FC<Props> = ({ nominationData }) => {
         TransitionComponent={dialogTransition}
         onClick={() => { setOpenDialog(false) }}
       >
-        <DialogTitle id="dialogKeep">Would you like to <strong>keep</strong> your previous nominations?</DialogTitle>
-        <DialogActions>
-          <Button onClick={() => { setOpenDialog(false) }} id="buttonKeep">
-            Keep
+        <Grid style={{ backgroundColor: '#333533' }}>
+          <DialogTitle id="dialogKeep" style={{ color: '#d9ded1' }} >Would you like to <strong>keep</strong> your previous nominations?</DialogTitle>
+          <DialogActions >
+            <Button onClick={() => { setOpenDialog(false) }} id="buttonKeep" className={classes.addButtonDialog}>
+              Keep
           </Button>
-          <Button
-            id="buttonClear"
-            onClick={() => {
-              setOpenDialog(false)
-              setNominations([])
-            }}
-          >
-            Clear
+            <Button
+              id="buttonClear"
+              onClick={() => {
+                setOpenDialog(false)
+                setNominations([])
+              }}
+              className={classes.removeButtonDialog}
+            >
+              Remove
           </Button>
-        </DialogActions>
+          </DialogActions>
+        </Grid>
       </Dialog>
       <PopoverPoster moviePopoverPoster={moviePopoverPoster} />
       <MovieInfoDialog openDialog={openDialog} onClose={() => { setOpenDialog(false) }} movieId={movieId} button={"Remove"} />
