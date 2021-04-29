@@ -193,7 +193,7 @@ const SearchResults: React.FC<Props> = ({ movieTitle }) => {
         <Snackbar open={openAlert} autoHideDuration={4000} onClose={() => { setOpenAlert(false) }} id="snackBarWarning" >
           <Alert severity="info" onClose={() => { setOpenAlert(false) }}>
             <AlertTitle>Warning</AlertTitle>
-            You've react a max of 5 total nominations. <strong id="strongMovieTitleWarning" >Delete </strong> one of your nominations to <strong> add another movie! </strong>
+            You've reached a max of 5 total nominations. <strong id="strongMovieTitleWarning" >Delete </strong> one of your nominations to <strong> add another movie! </strong>
           </Alert>
         </Snackbar >
 
