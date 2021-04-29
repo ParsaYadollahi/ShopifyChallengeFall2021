@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from 'axios'
 
-const baseUrl = "https://www.omdbapi.com/?apikey=4b14c67e&"
+const baseUrl = `https://www.omdbapi.com/?apikey=${process.env.REACT_APP_NEXT_PUBLIC_OMDB_API_KEY}`
 
 export const getMovie = async (movieTitle: String): Promise<AxiosResponse<ApiDataType>> => {
   try {
