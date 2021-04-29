@@ -57,12 +57,24 @@ Please visit [https://shopify-challenge-fall-2021.web.app/](https://shopify-chal
 - TypeScript
 - Material-UI
 - Firebase Hosting
+- Nightwatch.js
+
+## Testing
+
+The following tests were run using the Nighwatch end-to-end testing framework:
+- Inputting invalid movie.
+- Nominating more than 5 movies.
+- Removing a movie.
+- Nominating followed by removing a movie.
+- Saving data to local storage
+- Saving data to local storage followed by removing nominated movies
+- Saving data to local storage followed by keeping nominated movies
 
 ## Getting Started
 
 Clone this repo and run `npm install` while in the repo root directory to install project dependencies.
 
-There are eight commands available:
+There are three commands available:
 
 ```
 
