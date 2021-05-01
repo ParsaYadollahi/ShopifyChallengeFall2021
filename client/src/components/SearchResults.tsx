@@ -7,9 +7,6 @@ import Typography from "@material-ui/core/Typography"
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import Button from "@material-ui/core/Button"
-import Snackbar from '@material-ui/core/Snackbar';
-import Alert from '@material-ui/lab/Alert';
-import AlertTitle from '@material-ui/lab/AlertTitle';
 import Divider from '@material-ui/core/Divider';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Link from "@material-ui/core/Link"
@@ -18,6 +15,7 @@ import Link from "@material-ui/core/Link"
 import Nominations from "./Nominations"
 import PopoverPoster from "./PopoverPoster"
 import MovieInfoDialog from "./MovieInfoDialog"
+import SnackBarSearch from "./SnackBarSearch"
 
 // utils
 import { NominationsContext, PopoverContext } from '../utils/MovieContext'
@@ -190,19 +188,7 @@ const SearchResults: React.FC<Props> = ({ movieTitle }) => {
           </Paper>
         </Grid>
 
-        <Snackbar open={openAlert} autoHideDuration={4000} onClose={() => { setOpenAlert(false) }} id="snackBarWarning" >
-          <Alert severity="info" onClose={() => { setOpenAlert(false) }}>
-            <AlertTitle>Warning</AlertTitle>
-            You've reached a max of 5 total nominations. <strong id="strongMovieTitleWarning" >Delete </strong> one of your nominations to <strong> add another movie! </strong>
-          </Alert>
-        </Snackbar >
-
-        <Snackbar open={openAlertError} autoHideDuration={2700} onClose={() => { setOpenAlertError(false) }} id="snackBarError" >
-          <Alert severity="error" onClose={() => { setOpenAlertError(false) }}>
-            <AlertTitle>Error</AlertTitle>
-            The movie <strong id="strongMovieTitleError">{movieTitle}</strong> doesn't exist!
-          </Alert>
-        </Snackbar >
+        <SnackBarSearch openAlert={openAlert} setOpenAlert={setOpenAlert} openAlertError={openAlertError} setOpenAlertError={setOpenAlertError} movieTitle={movieTitle} />
 
         <PopoverPoster moviePopoverPoster={moviePopoverPoster} />
         <MovieInfoDialog openDialog={openDialog} onClose={() => { setOpenDialog(false) }} movieId={movieId} button={"Nominate"} />
