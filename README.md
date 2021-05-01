@@ -4,7 +4,7 @@ The Shoppies
 Movie nominations
 </h1>
 
-![Home page screenshot](client/public/images/frontpage.png)
+![Home page screenshot](client/src/images/frontpage.png)
 
 <p align="center"><sup><i>Home page</i></sup></p>
 
@@ -44,11 +44,11 @@ The project is hosted on [Firebase Hosting](https://firebase.google.com/products
 
 Please visit [https://shopify-challenge-fall-2021.web.app/](https://shopify-challenge-fall-2021.web.app/) or see the [docs/images/](docs/images/) folder for screenshots.
 
-![Hover over movie page screenshot](client/public/images/resultpagehover.png)
+![Hover over movie page screenshot](client/src/images/resultpagehover.png)
 
 <p align="center"><sup><i>Hover over movie</i></sup></p>
 
-![Movie details screenshot](client/public/images/resultpagedialog.png)
+![Movie details screenshot](client/src/images/resultpagedialog.png)
 
 <p align="center"><sup><i>Dialog page screenshot</i></sup></p>
 
