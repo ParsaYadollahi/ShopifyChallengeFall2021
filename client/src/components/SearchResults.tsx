@@ -151,7 +151,7 @@ const SearchResults: React.FC<Props> = ({ movieTitle }) => {
 
                 <Button variant="outlined"
                   disabled={nominationsContainMovie(movie.imdbID) || movieNominations.length >= 5}
-                  onClick={(e) => { handleAddNomination(movie) }}
+                  onClick={() => { handleAddNomination(movie) }}
                   className={classes.addButton}
                   size="small"
                   id={`button${k}`}
@@ -173,7 +173,7 @@ const SearchResults: React.FC<Props> = ({ movieTitle }) => {
         item
         style={{ padding: '30px 0px' }}
       >
-        <Grid item xs={6}>
+        <Grid item sm={6} xs={6}>
           <Paper variant="outlined" square style={{ backgroundColor: '#333533' }}>
             <Typography variant="h6" component="h1" className={classes.resultsMovie}>
               Results for movie

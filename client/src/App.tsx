@@ -1,12 +1,18 @@
+import React, { useState } from "react"
 import './App.css';
 
 // Components
 import SearchBar from "./components/SearchBar"
+import PopoverHelp from "./components/PopoverHelp"
 
 // MUI
 import Grid from "@material-ui/core/Grid"
 import Typography from "@material-ui/core/Typography"
+import Popover from '@material-ui/core/Popover';
+
+// Icons
 import ShopIcon from '@material-ui/icons/Shop';
+import HelpIcon from '@material-ui/icons/Help';
 
 // Theme
 import themeFile from './utils/theme';
@@ -23,6 +29,17 @@ const useStyles = makeStyles((theme: Theme & typeof themeFile) => {
       padding: '100px 0px 15px 0px',
       fontWeight: 500,
       color: '#95bf47'
+    },
+    helpIcon: {
+      fontSize: 20,
+      verticalAlign: 'middle',
+      padding: '0px 10px',
+      color: '#575757'
+    },
+    shopIcon: {
+      color: '#95bf47',
+      fontSize: 50,
+      verticalAlign: 'middle'
     }
   })
 });
@@ -31,21 +48,52 @@ const theme = createMuiTheme(themeFile);
 
 function App() {
   const classes = useStyles()
+  const [anchorElPopover, setAnchorElPopover] = useState<HTMLElement | null>(null);
+
+  const handlePopoverOpen = (event: React.MouseEvent<HTMLElement, MouseEvent>) => {
+    setAnchorElPopover(event.currentTarget);
+  };
+
   return (
     <>
       <MuiThemeProvider theme={theme}>
         <Grid
           container
-          direction="row"
           justify="center"
           alignItems="center"
         >
           <Grid item xs={10}
           >
             <Typography variant="h4" component="h1" className={classes.title}>
-              <ShopIcon style={{ color: '#95bf47', fontSize: 50, verticalAlign: 'middle' }} />
+              <ShopIcon className={classes.shopIcon} />
               The Shoppies
-          </Typography>
+                <HelpIcon
+                className={classes.helpIcon}
+                aria-owns={Boolean(anchorElPopover) ? 'mouse-over-popover' : undefined}
+                aria-haspopup="true"
+                onMouseEnter={(e: any) => { handlePopoverOpen(e) }}
+                onMouseLeave={() => { setAnchorElPopover(null) }}
+              />
+
+              <Popover
+                open={Boolean(anchorElPopover)}
+                anchorEl={anchorElPopover}
+                anchorOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'left',
+                }}
+                onClose={() => { setAnchorElPopover(null) }}
+                disableRestoreFocus
+                style={{ pointerEvents: 'none' }}
+
+              >
+                <PopoverHelp />
+              </Popover>
+            </Typography>
 
             <SearchBar />
 
