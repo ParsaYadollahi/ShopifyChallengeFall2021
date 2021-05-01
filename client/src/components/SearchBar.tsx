@@ -29,26 +29,24 @@ const useStyles = makeStyles((theme: Theme & typeof themeFile) => {
       borderColor: '#d9ded1 !important'
     },
     cssLabel: {
-      color: '#d9ded1',
+      color: themeFile.colors.white,
     },
     cssFocused: {
-      color: '#d9ded1',
+      color: themeFile.colors.white,
       borderColor: '#d9ded1 !important'
     },
     input: {
-      color: '#d9ded1'
+      color: themeFile.colors.white
     }
 
   })
 });
 
 const SearchBar: React.FC = () => {
-
   const classes = useStyles()
 
   const [movieNominations, setNominations] = useState<IMovies[]>([])
   const [anchorElPopover, setAnchorElPopover] = useState<EventTarget & HTMLElement | null>(null)
-
   const [movie, setMovieTitle] = useState<String>('')
   const [textFieldData, setTextFieldData] = useState<{ title: String }>({ title: '' })
 
@@ -79,17 +77,17 @@ const SearchBar: React.FC = () => {
         style={{ margin: '30px 0px' }}
       >
         <Grid item xs={12}>
-          <Paper variant="outlined" square style={{ backgroundColor: themeFile.colors.grey }}>
+          <Paper
+            variant="outlined"
+            square
+            style={{ backgroundColor: themeFile.colors.grey }}>
 
             <Grid
               container
-              direction="row"
-              justify="flex-start"
-              alignItems="center"
               style={{ padding: '30px' }}
             >
               <Grid item xs={12}>
-                <Typography style={{ color: '#d9ded1' }}>
+                <Typography style={{ color: themeFile.colors.white }}>
                   Movie title
                 </Typography>
                 <TextField
@@ -102,7 +100,7 @@ const SearchBar: React.FC = () => {
                   fullWidth
                   onChange={handleTextField}
                   onKeyPress={handleKeywordKeyPress}
-                  style={{ color: '#d9ded1' }}
+                  style={{ color: themeFile.colors.white }}
 
 
                   InputLabelProps={{
@@ -114,7 +112,7 @@ const SearchBar: React.FC = () => {
                   InputProps={{
                     startAdornment: (
                       <InputAdornment position="start">
-                        <SearchIcon style={{ color: '#d9ded1' }} />
+                        <SearchIcon style={{ color: themeFile.colors.white }} />
                       </InputAdornment>
                     ),
                     classes: {
@@ -125,18 +123,11 @@ const SearchBar: React.FC = () => {
                     }
                   }}
                 />
-
               </Grid>
             </Grid>
           </Paper>
 
-          <Grid
-            container
-            direction="row"
-            justify="flex-start"
-            alignItems="center"
-          >
-
+          <Grid>
             <NominationsContext.Provider
               value={{ movieNominations, setNominations }}
             >
@@ -145,17 +136,12 @@ const SearchBar: React.FC = () => {
                   <SearchResults movieTitle={movie} />
                 </Grid>
               </PopoverContext.Provider>
-
             </NominationsContext.Provider>
-
           </Grid>
-
         </Grid>
       </Grid>
     </>
-
   )
 }
-
 
 export default SearchBar;

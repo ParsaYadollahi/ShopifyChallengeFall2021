@@ -94,9 +94,7 @@ function App() {
                 <PopoverHelp />
               </Popover>
             </Typography>
-
             <SearchBar />
-
           </Grid>
         </Grid>
       </MuiThemeProvider>

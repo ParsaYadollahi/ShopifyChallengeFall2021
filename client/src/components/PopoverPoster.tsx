@@ -9,14 +9,11 @@ import { PopoverContext } from '../utils/MovieContext'
 // Components
 import poster404 from "./../images/poster404.png"
 
-
 type Props = {
   moviePopoverPoster: string,
 }
 
-
 const PopoverPoster: React.FC<Props> = ({ moviePopoverPoster }) => {
-
   const { anchorElPopover, setAnchorElPopover } = useContext(PopoverContext)
 
   return (
@@ -35,18 +32,15 @@ const PopoverPoster: React.FC<Props> = ({ moviePopoverPoster }) => {
         transformOrigin={{
           vertical: 'top',
           horizontal: 'center',
-        }}
-      >
+        }}>
 
         <Card>
           <CardMedia
             style={{ width: '150px' }}
             src={moviePopoverPoster === "N/A" ? poster404 : moviePopoverPoster}
             component="img"
-            title="Movie poster"
-          />
+            title="Movie poster" />
         </Card>
-
       </Popover>
     ) : (
       <> </>
@@ -54,8 +48,5 @@ const PopoverPoster: React.FC<Props> = ({ moviePopoverPoster }) => {
   )
 
 }
-
-
-
 
 export default PopoverPoster

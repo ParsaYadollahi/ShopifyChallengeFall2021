@@ -9,9 +9,7 @@ export interface SnackBarProps {
   setOpenAlert: (bool: boolean) => void
   setOpenAlertError: (bool: boolean) => void,
   movieTitle: String
-
 }
-
 
 const SnackBarSearch = (props: SnackBarProps) => {
 
@@ -27,7 +25,8 @@ const SnackBarSearch = (props: SnackBarProps) => {
       <Snackbar open={openAlert} autoHideDuration={4000} onClose={() => { setOpenAlert(false) }} id="snackBarWarning" >
         <Alert severity="info" onClose={() => { setOpenAlert(false) }}>
           <AlertTitle>Warning</AlertTitle>
-            You've reached a max of 5 total nominations. <br /><strong id="strongMovieTitleWarning" >Delete </strong> one of your nominations to <strong> add another movie! </strong>
+            You've reached a max of 5 total nominations. <br /><strong id="strongMovieTitleWarning" >
+            Delete </strong> one of your nominations to <strong> add another movie! </strong>
         </Alert>
       </Snackbar >
 
@@ -39,7 +38,6 @@ const SnackBarSearch = (props: SnackBarProps) => {
       </Snackbar >
     </>
   )
-
 }
 
 export default SnackBarSearch

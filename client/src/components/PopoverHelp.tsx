@@ -12,13 +12,12 @@ import themeFile from '../utils/theme';
 const useStyles = makeStyles((theme: Theme & typeof themeFile) => {
   return ({
     typographyHelp: {
-      color: '#d9ded1'
+      color: themeFile.colors.white
     }
   })
 });
 
 const PopoverHelp = () => {
-
   const classes = useStyles()
 
   return (
@@ -43,13 +42,10 @@ const PopoverHelp = () => {
         <Typography className={classes.typographyHelp} variant="subtitle2" component="h2">
           - To remove movies from your nomination list, click on the red "remove" button to the right of movie title in the nomination list
         </Typography>
-      </CardContent>
 
+      </CardContent>
     </Card>
   )
-
-
-
 }
 
 export default PopoverHelp

@@ -112,7 +112,7 @@ const Nominations: React.FC<Props> = ({ nominationData }) => {
                   aria-haspopup="true"
                   onMouseEnter={(e: any) => { handlePopover(e, nomination.Poster) }}
                   onMouseLeave={() => { setAnchorElPopover(null); setmoviePopoverPoster('') }}
-                  style={{ color: '#d9ded1', }}
+                  style={{ color: themeFile.colors.white, }}
                 >
                   <Link color="inherit" onClick={() => { openDialogMovie(nomination.imdbID) }}>
                     <strong>{nomination.Title}</strong> ({nomination.Year})
@@ -166,7 +166,7 @@ const Nominations: React.FC<Props> = ({ nominationData }) => {
         onClick={() => { setOpenDialog(false) }}
       >
         <Grid style={{ backgroundColor: themeFile.colors.grey }}>
-          <DialogTitle id="dialogKeep" style={{ color: '#d9ded1' }} >Would you like to <strong>keep</strong> your previous nominations?</DialogTitle>
+          <DialogTitle id="dialogKeep" style={{ color: themeFile.colors.white }} >Would you like to <strong>keep</strong> your previous nominations?</DialogTitle>
           <DialogActions >
             <Button onClick={() => { setOpenDialog(false) }} id="buttonKeep" className={classes.addButtonDialog}>
               Keep

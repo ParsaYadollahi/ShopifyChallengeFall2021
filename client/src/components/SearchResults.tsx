@@ -40,7 +40,6 @@ const useStyles = makeStyles((theme: Theme & typeof themeFile) => {
 });
 
 const SearchResults: React.FC<Props> = ({ movieTitle }) => {
-
   const classes = useStyles();
 
   const { movieNominations, setNominations } = useContext(NominationsContext)
@@ -54,8 +53,6 @@ const SearchResults: React.FC<Props> = ({ movieTitle }) => {
 
   const [openDialog, setOpenDialog] = React.useState(false);
   const [movieId, setMovieId] = React.useState<String>('');
-
-
 
   const handleAddNomination = (movieNomination: IMovies) => {
     if (movieNominations.length < 5) {
@@ -131,7 +128,7 @@ const SearchResults: React.FC<Props> = ({ movieTitle }) => {
                   aria-haspopup="true"
                   onMouseEnter={(e: any) => { handlePopover(e, movie.Poster) }}
                   onMouseLeave={() => { setAnchorElPopover(null) }}
-                  style={{ color: '#d9ded1', }}
+                  style={{ color: themeFile.colors.white }}
 
                 >
                   <Link color="inherit" onClick={() => { openDialogMovie(movie.imdbID) }}>
@@ -144,8 +141,8 @@ const SearchResults: React.FC<Props> = ({ movieTitle }) => {
                 sm={3}
                 xs={12}
                 container
-                justify="flex-end">
-
+                justify="flex-end"
+              >
 
                 <Button variant="outlined"
                   disabled={nominationsContainMovie(movie.imdbID) || movieNominations.length >= 5}

@@ -32,12 +32,12 @@ const useStyles = makeStyles((theme: Theme & typeof themeFile) => {
     props: {
       fontSize: '12px',
       fontWeight: 600,
-      color: '#d9ded1'
+      color: themeFile.colors.white
     },
     propTitle: {
       fontSize: '10px',
       padding: '20px 0px',
-      color: '#d9ded1'
+      color: themeFile.colors.white
     }
   })
 });
@@ -45,11 +45,11 @@ const useStyles = makeStyles((theme: Theme & typeof themeFile) => {
 
 const MovieInfoDialog = (props: SimpleDialogProps) => {
 
-  const { onClose, openDialog, movieId, button } = props;
   const classes = useStyles()
+  const { onClose, openDialog, movieId, button } = props;
 
-  const [movieData, setMovieData] = useState<IMoviesId>()
   const { movieNominations, setNominations } = useContext(NominationsContext)
+  const [movieData, setMovieData] = useState<IMoviesId>()
 
   useEffect(() => {
     fetchMovieById(movieId)
@@ -114,10 +114,7 @@ const MovieInfoDialog = (props: SimpleDialogProps) => {
             <Typography variant="caption" className={classes.propTitle}>
               {titles[k]}
             </Typography>
-          ) : (
-            <> </>
-          )
-          }
+          ) : (<> </>)}
         </Grid>
       )
     )
@@ -187,14 +184,7 @@ const MovieInfoDialog = (props: SimpleDialogProps) => {
           </Grid>
         </Card>
       </Dialog >
-    ) :
-      <> </>
-  )
-
-
+    ) : <> </>)
 }
-
-
-
 
 export default MovieInfoDialog

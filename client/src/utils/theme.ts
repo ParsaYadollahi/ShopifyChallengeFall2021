@@ -82,7 +82,8 @@ const themeFile = {
   },
   colors: {
     grey: '#333533',
-    green: '#95bf47'
+    green: '#95bf47',
+    white: '#d9ded1'
   }
 
 };
