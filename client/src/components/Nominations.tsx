@@ -95,14 +95,13 @@ const Nominations: React.FC<Props> = ({ nominationData }) => {
           <ListItem key={k}>
             <Grid
               container
-              direction="row"
               justify="center"
-              alignItems="center"
             >
 
               <Grid
                 item
-                xs={8}
+                xs={12}
+                sm={9}
                 container
                 justify="flex-start"
               >
@@ -120,7 +119,7 @@ const Nominations: React.FC<Props> = ({ nominationData }) => {
                   </Link>
                 </Typography>
               </Grid>
-              <Grid item xs={4} container
+              <Grid item sm={3} xs={12} container
                 justify="flex-end">
                 <Button variant="outlined"
                   onClick={(e) => { handleDeleteNomination(nomination) }}

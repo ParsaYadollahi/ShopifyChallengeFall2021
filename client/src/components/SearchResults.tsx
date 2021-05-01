@@ -124,7 +124,8 @@ const SearchResults: React.FC<Props> = ({ movieTitle }) => {
 
               <Grid
                 item
-                xs={8}
+                sm={9}
+                xs={12}
                 container
                 justify="flex-start"
               >
@@ -143,7 +144,11 @@ const SearchResults: React.FC<Props> = ({ movieTitle }) => {
                   </Link>
                 </Typography>
               </Grid>
-              <Grid item xs={4} container
+              <Grid
+                item
+                sm={3}
+                xs={12}
+                container
                 justify="flex-end">
 
 
