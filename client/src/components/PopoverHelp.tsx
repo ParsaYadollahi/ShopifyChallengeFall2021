@@ -28,7 +28,7 @@ const PopoverHelp = () => {
           Movie awards for entrepreneurs
         </Typography>
         <Typography className={classes.typographyHelp} variant="subtitle2" component="h2">
-          - Type a movie name in the search bar and press enter to list all movies related to that title.
+          - Type a movie title in the search bar and press enter to list all movies related to that title.
         </Typography>
         <Typography className={classes.typographyHelp} variant="subtitle2" component="h2">
           - If you can't find your movie, try removing some of the words to broaden the seach scope
@@ -40,7 +40,7 @@ const PopoverHelp = () => {
           - You can preview more details of the movie by clicking on the title of the movie
         </Typography>
         <Typography className={classes.typographyHelp} variant="subtitle2" component="h2">
-          - To remove movies from your nomination list, click on the red "remove" button to the right of movie title in the nomination list
+          - To remove movies from your nomination list, click on the red "Remove" button to the right of movie title in the nomination list
         </Typography>
 
       </CardContent>
