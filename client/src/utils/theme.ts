@@ -80,6 +80,10 @@ const themeFile = {
       boxShadow: 'none',
     },
   },
+  colors: {
+    grey: '#333533',
+    green: '#95bf47'
+  }
 
 };
 

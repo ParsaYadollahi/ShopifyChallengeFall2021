@@ -147,7 +147,7 @@ const Nominations: React.FC<Props> = ({ nominationData }) => {
         justify="flex-start"
       >
         <Grid item xs={12}>
-          <Paper variant="outlined" square style={{ backgroundColor: '#333533' }}>
+          <Paper variant="outlined" square style={{ backgroundColor: themeFile.colors.grey }}>
             <Typography variant="h6" component="h1" className={classes.resultNominations}>
               Nominations
           </Typography>
@@ -165,7 +165,7 @@ const Nominations: React.FC<Props> = ({ nominationData }) => {
         TransitionComponent={dialogTransition}
         onClick={() => { setOpenDialog(false) }}
       >
-        <Grid style={{ backgroundColor: '#333533' }}>
+        <Grid style={{ backgroundColor: themeFile.colors.grey }}>
           <DialogTitle id="dialogKeep" style={{ color: '#d9ded1' }} >Would you like to <strong>keep</strong> your previous nominations?</DialogTitle>
           <DialogActions >
             <Button onClick={() => { setOpenDialog(false) }} id="buttonKeep" className={classes.addButtonDialog}>

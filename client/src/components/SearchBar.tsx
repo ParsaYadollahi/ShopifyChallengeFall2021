@@ -79,7 +79,7 @@ const SearchBar: React.FC = () => {
         style={{ margin: '30px 0px' }}
       >
         <Grid item xs={12}>
-          <Paper variant="outlined" square style={{ backgroundColor: '#333533' }}>
+          <Paper variant="outlined" square style={{ backgroundColor: themeFile.colors.grey }}>
 
             <Grid
               container

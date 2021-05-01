@@ -15,12 +15,15 @@ export interface SnackBarProps {
 
 const SnackBarSearch = (props: SnackBarProps) => {
 
-  const { openAlert, openAlertError, setOpenAlert, setOpenAlertError, movieTitle } = props
+  const {
+    openAlert,
+    openAlertError,
+    setOpenAlert,
+    setOpenAlertError,
+    movieTitle } = props
 
   return (
-
     <>
-
       <Snackbar open={openAlert} autoHideDuration={4000} onClose={() => { setOpenAlert(false) }} id="snackBarWarning" >
         <Alert severity="info" onClose={() => { setOpenAlert(false) }}>
           <AlertTitle>Warning</AlertTitle>

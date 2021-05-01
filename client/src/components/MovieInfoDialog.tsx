@@ -10,6 +10,7 @@ import Typography from "@material-ui/core/Typography"
 
 // Components
 import { getMovieById } from "./../api/Search"
+import poster404 from "./../images/poster404.png"
 
 // utils
 import { NominationsContext } from '../utils/MovieContext'
@@ -27,7 +28,17 @@ export interface SimpleDialogProps {
 const useStyles = makeStyles((theme: Theme & typeof themeFile) => {
   return ({
     removeButton: theme.removeButtonDialog,
-    addButton: theme.addButtonDialog
+    addButton: theme.addButtonDialog,
+    props: {
+      fontSize: '12px',
+      fontWeight: 600,
+      color: '#d9ded1'
+    },
+    propTitle: {
+      fontSize: '10px',
+      padding: '20px 0px',
+      color: '#d9ded1'
+    }
   })
 });
 
@@ -74,18 +85,33 @@ const MovieInfoDialog = (props: SimpleDialogProps) => {
     onClose()
   }
 
-  const titles = ["Title", "Release Date", "Director(s)", "Genre(s)", "Awards", "Rating (IMDB)"]
-  const mapData = [movieData?.Title, movieData?.Released, movieData?.Director, movieData?.Genre, movieData?.Awards, movieData?.imdbRating, movieData?.Plot]
+  const titles = [
+    "Title",
+    "Release Date",
+    "Director(s)",
+    "Genre(s)",
+    "Awards",
+    "Rating (IMDB)"
+  ]
+  const mapData = [
+    movieData?.Title,
+    movieData?.Released,
+    movieData?.Director,
+    movieData?.Genre,
+    movieData?.Awards,
+    movieData?.imdbRating,
+    movieData?.Plot
+  ]
 
   const displayData = () => {
     return (
       mapData.map((prop, k) =>
         <Grid item key={k} style={{ padding: "5px 0px" }}>
-          <Typography variant="body1" style={{ fontSize: '12px', fontWeight: 600, color: '#d9ded1' }}>
+          <Typography variant="body1" className={classes.props}>
             {prop}
           </Typography>
           {k !== 6 ? (
-            <Typography variant="caption" style={{ fontSize: '10px', padding: '20px 0px', color: '#d9ded1' }}>
+            <Typography variant="caption" className={classes.propTitle}>
               {titles[k]}
             </Typography>
           ) : (
@@ -120,7 +146,6 @@ const MovieInfoDialog = (props: SimpleDialogProps) => {
     )
   }
 
-
   return (
     movieId !== '' ? (
       <Dialog
@@ -128,7 +153,7 @@ const MovieInfoDialog = (props: SimpleDialogProps) => {
         aria-labelledby="simple-dialog-title"
         open={openDialog}
       >
-        <Card style={{ backgroundColor: '#333533', }}>
+        <Card style={{ backgroundColor: themeFile.colors.grey }}>
           <Grid
             container
             direction="row"
@@ -137,7 +162,7 @@ const MovieInfoDialog = (props: SimpleDialogProps) => {
           >
             <Grid item xs={12} style={{ padding: '20px 0px 0px 20px' }}>
               <Typography variant="h6" style={{
-                fontWeight: 600, color: '#95bf47'
+                fontWeight: 600, color: themeFile.colors.green
               }}>
                 Movie Details - {movieData?.Title} ({movieData?.Year})
             </Typography>
@@ -145,7 +170,7 @@ const MovieInfoDialog = (props: SimpleDialogProps) => {
             <Grid item xs={5}>
               <CardMedia
                 style={{ padding: 10 }}
-                src={movieData?.Poster}
+                src={movieData?.Poster === "N/A" ? poster404 : movieData?.Poster}
                 title="Movie Poster"
                 component="img"
               />

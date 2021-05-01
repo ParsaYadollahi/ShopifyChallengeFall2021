@@ -115,12 +115,7 @@ const SearchResults: React.FC<Props> = ({ movieTitle }) => {
         >
           {k !== 0 ? <Divider variant="middle" /> : <> </>}
           <ListItem>
-            <Grid
-              container
-              direction="row"
-              justify="center"
-              alignItems="center"
-            >
+            <Grid container>
 
               <Grid
                 item
@@ -177,7 +172,7 @@ const SearchResults: React.FC<Props> = ({ movieTitle }) => {
         style={{ padding: '30px 0px' }}
       >
         <Grid item sm={6} xs={6}>
-          <Paper variant="outlined" square style={{ backgroundColor: '#333533' }}>
+          <Paper variant="outlined" square style={{ backgroundColor: themeFile.colors.grey }}>
             <Typography variant="h6" component="h1" className={classes.resultsMovie}>
               Results for movie
           </Typography>
@@ -193,10 +188,20 @@ const SearchResults: React.FC<Props> = ({ movieTitle }) => {
           </Paper>
         </Grid>
 
-        <SnackBarSearch openAlert={openAlert} setOpenAlert={setOpenAlert} openAlertError={openAlertError} setOpenAlertError={setOpenAlertError} movieTitle={movieTitle} />
+        <SnackBarSearch
+          openAlert={openAlert}
+          setOpenAlert={setOpenAlert}
+          openAlertError={openAlertError}
+          setOpenAlertError={setOpenAlertError}
+          movieTitle={movieTitle} />
 
-        <PopoverPoster moviePopoverPoster={moviePopoverPoster} />
-        <MovieInfoDialog openDialog={openDialog} onClose={() => { setOpenDialog(false) }} movieId={movieId} button={"Nominate"} />
+        <PopoverPoster
+          moviePopoverPoster={moviePopoverPoster} />
+        <MovieInfoDialog
+          openDialog={openDialog}
+          onClose={() => { setOpenDialog(false) }}
+          movieId={movieId}
+          button={"Nominate"} />
 
         <Grid item xs={6} container>
           <Nominations nominationData={movieNominations} />

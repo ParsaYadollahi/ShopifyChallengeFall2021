@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme: Theme & typeof themeFile) => {
     title: {
       padding: '100px 0px 15px 0px',
       fontWeight: 500,
-      color: '#95bf47'
+      color: themeFile.colors.green
     },
     helpIcon: {
       fontSize: 20,
@@ -37,7 +37,7 @@ const useStyles = makeStyles((theme: Theme & typeof themeFile) => {
       color: '#575757'
     },
     shopIcon: {
-      color: '#95bf47',
+      color: themeFile.colors.green,
       fontSize: 50,
       verticalAlign: 'middle'
     }

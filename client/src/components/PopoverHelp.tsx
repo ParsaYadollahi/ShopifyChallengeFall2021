@@ -22,7 +22,7 @@ const PopoverHelp = () => {
   const classes = useStyles()
 
   return (
-    <Card style={{ backgroundColor: '#333533' }}>
+    <Card style={{ backgroundColor: themeFile.colors.grey }}>
       <CardContent>
 
         <Typography className={classes.typographyHelp} variant="h6" component="h2">

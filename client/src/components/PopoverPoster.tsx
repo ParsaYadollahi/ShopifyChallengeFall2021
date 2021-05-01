@@ -1,9 +1,13 @@
 import React, { useContext } from 'react'
 
+// MUI
 import Popover from '@material-ui/core/Popover';
 import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
 import { PopoverContext } from '../utils/MovieContext'
+
+// Components
+import poster404 from "./../images/poster404.png"
 
 
 type Props = {
@@ -37,7 +41,7 @@ const PopoverPoster: React.FC<Props> = ({ moviePopoverPoster }) => {
         <Card>
           <CardMedia
             style={{ width: '150px' }}
-            src={moviePopoverPoster}
+            src={moviePopoverPoster === "N/A" ? poster404 : moviePopoverPoster}
             component="img"
             title="Movie poster"
           />
