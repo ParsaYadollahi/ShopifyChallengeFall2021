@@ -69,7 +69,6 @@ function App() {
               The Shoppies
                 <HelpIcon
                 className={classes.helpIcon}
-                aria-owns={Boolean(anchorElPopover) ? 'mouse-over-popover' : undefined}
                 aria-haspopup="true"
                 onMouseEnter={(e: React.MouseEvent<Element, MouseEvent>) => { handlePopoverOpen(e) }}
                 onMouseLeave={() => { setAnchorElPopover(null) }}

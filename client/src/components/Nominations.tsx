@@ -108,7 +108,6 @@ const Nominations: React.FC<Props> = ({ nominationData }) => {
                 <Typography
                   variant='subtitle2'
                   component="h2"
-                  aria-owns={Boolean(anchorElPopover) ? 'mouse-over-popover' : undefined}
                   aria-haspopup="true"
                   onMouseEnter={(e: React.MouseEvent<Element, MouseEvent>) => { handlePopover(e, nomination.Poster) }}
                   onMouseLeave={() => { setAnchorElPopover(null); setmoviePopoverPoster('') }}
