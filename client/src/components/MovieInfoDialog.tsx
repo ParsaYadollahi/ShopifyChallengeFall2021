@@ -17,6 +17,7 @@ import { NominationsContext } from '../utils/MovieContext'
 import { makeStyles } from '@material-ui/core/styles';
 import { Theme } from '@material-ui/core/styles/createMuiTheme';
 import themeFile from '../utils/theme';
+import { AxiosResponse } from 'axios';
 
 export interface SimpleDialogProps {
   openDialog: boolean;
@@ -57,7 +58,7 @@ const MovieInfoDialog = (props: SimpleDialogProps) => {
 
   const fetchMovieById = (movieId: String): void => {
     getMovieById(movieId)
-      .then((movieData: IMovies[] | any) => {
+      .then((movieData: AxiosResponse<ApiDataTypeId>) => {
         setMovieData(movieData.data)
       })
       .catch((err: Error) => console.log(err))

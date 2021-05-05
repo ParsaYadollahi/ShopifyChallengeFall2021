@@ -48,10 +48,10 @@ const theme = createMuiTheme(themeFile);
 
 function App() {
   const classes = useStyles()
-  const [anchorElPopover, setAnchorElPopover] = useState<HTMLElement | null>(null);
+  const [anchorElPopover, setAnchorElPopover] = useState<Element | null>(null);
 
-  const handlePopoverOpen = (event: React.MouseEvent<HTMLElement, MouseEvent>) => {
-    setAnchorElPopover(event.currentTarget);
+  const handlePopoverOpen = (e: React.MouseEvent<Element, MouseEvent>) => {
+    setAnchorElPopover(e.currentTarget);
   };
 
   return (
@@ -71,7 +71,7 @@ function App() {
                 className={classes.helpIcon}
                 aria-owns={Boolean(anchorElPopover) ? 'mouse-over-popover' : undefined}
                 aria-haspopup="true"
-                onMouseEnter={(e: any) => { handlePopoverOpen(e) }}
+                onMouseEnter={(e: React.MouseEvent<Element, MouseEvent>) => { handlePopoverOpen(e) }}
                 onMouseLeave={() => { setAnchorElPopover(null) }}
               />
 

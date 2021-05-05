@@ -46,7 +46,7 @@ const SearchBar: React.FC = () => {
   const classes = useStyles()
 
   const [movieNominations, setNominations] = useState<IMovies[]>([])
-  const [anchorElPopover, setAnchorElPopover] = useState<EventTarget & HTMLElement | null>(null)
+  const [anchorElPopover, setAnchorElPopover] = useState<Element | null>(null)
   const [movie, setMovieTitle] = useState<String>('')
   const [textFieldData, setTextFieldData] = useState<{ title: String }>({ title: '' })
 

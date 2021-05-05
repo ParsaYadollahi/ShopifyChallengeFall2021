@@ -25,6 +25,7 @@ import themeFile from '../utils/theme';
 
 // API
 import { getMovie } from "./../api/Search"
+import { AxiosResponse } from 'axios';
 
 
 type Props = {
@@ -63,7 +64,7 @@ const SearchResults: React.FC<Props> = ({ movieTitle }) => {
     }
   }
 
-  const handlePopover = (e: React.MouseEvent<HTMLElement, MouseEvent>, moviePoster: string) => {
+  const handlePopover = (e: React.MouseEvent<Element, MouseEvent>, moviePoster: string) => {
     setmoviePopoverPoster(moviePoster)
     setAnchorElPopover(e.currentTarget);
   };
@@ -74,7 +75,7 @@ const SearchResults: React.FC<Props> = ({ movieTitle }) => {
 
   const fetchMovie = (movieTitle: String): void => {
     getMovie(movieTitle)
-      .then((movieData: IMovies[] | any) => {
+      .then((movieData: AxiosResponse<ApiDataType>) => {
         if (movieTitle !== '') {
           setLoading(true)
           if (movieData.data.Response === "False") {
@@ -126,7 +127,7 @@ const SearchResults: React.FC<Props> = ({ movieTitle }) => {
                   component="h2"
                   aria-owns={Boolean(anchorElPopover) ? 'mouse-over-popover' : undefined}
                   aria-haspopup="true"
-                  onMouseEnter={(e: any) => { handlePopover(e, movie.Poster) }}
+                  onMouseEnter={(e: React.MouseEvent<Element, MouseEvent>) => { handlePopover(e, movie.Poster) }}
                   onMouseLeave={() => { setAnchorElPopover(null) }}
                   style={{ color: themeFile.colors.white }}
 

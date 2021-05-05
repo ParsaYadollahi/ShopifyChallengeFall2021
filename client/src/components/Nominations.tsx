@@ -58,7 +58,7 @@ const Nominations: React.FC<Props> = ({ nominationData }) => {
   const [openDialog, setOpenDialog] = React.useState(false);
   const [movieId, setMovieId] = React.useState<String>('');
 
-  const handlePopover = (e: React.MouseEvent<HTMLElement, MouseEvent>, moviePoster: string) => {
+  const handlePopover = (e: React.MouseEvent<Element, MouseEvent>, moviePoster: string) => {
     setmoviePopoverPoster(moviePoster)
     setAnchorElPopover(e.currentTarget);
   };
@@ -110,7 +110,7 @@ const Nominations: React.FC<Props> = ({ nominationData }) => {
                   component="h2"
                   aria-owns={Boolean(anchorElPopover) ? 'mouse-over-popover' : undefined}
                   aria-haspopup="true"
-                  onMouseEnter={(e: any) => { handlePopover(e, nomination.Poster) }}
+                  onMouseEnter={(e: React.MouseEvent<Element, MouseEvent>) => { handlePopover(e, nomination.Poster) }}
                   onMouseLeave={() => { setAnchorElPopover(null); setmoviePopoverPoster('') }}
                   style={{ color: themeFile.colors.white, }}
                 >

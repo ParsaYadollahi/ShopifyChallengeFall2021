@@ -3,7 +3,9 @@ type ApiDataType = {
   Title: String,
   Type: String,
   Year: String,
-  imdbID: String
+  imdbID: String,
+  Response: String,
+  Search: IMovies[]
 }
 
 type ApiDataTypeId = {

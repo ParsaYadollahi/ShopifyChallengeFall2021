@@ -12,8 +12,8 @@ export const NominationsContext = createContext<TContext>({
 
 
 type TPopoverContext = {
-  anchorElPopover: HTMLElement | null
-  setAnchorElPopover: React.Dispatch<React.SetStateAction<EventTarget & HTMLElement | null>>
+  anchorElPopover: Element | null
+  setAnchorElPopover: React.Dispatch<React.SetStateAction<Element | null>>
 }
 
 
