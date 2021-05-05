@@ -125,6 +125,7 @@ const SearchResults: React.FC<Props> = ({ movieTitle }) => {
                 <Typography
                   variant='subtitle2'
                   component="h2"
+                  aria-owns={Boolean(anchorElPopover) ? 'mouse-over-popover' : undefined}
                   aria-haspopup="true"
                   onMouseEnter={(e: React.MouseEvent<Element, MouseEvent>) => { handlePopover(e, movie.Poster) }}
                   onMouseLeave={() => { setAnchorElPopover(null) }}
