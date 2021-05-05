@@ -82,7 +82,7 @@ const MovieInfoDialog = (props: SimpleDialogProps) => {
   }
 
   const handleDeleteNomination = (movieNomination: IMovies) => {
-    setNominations(movieNominations.filter((deletedNomination) => deletedNomination.Title !== movieNomination.Title));
+    setNominations(movieNominations.filter((deletedNomination) => deletedNomination.imdbID !== movieNomination.imdbID));
     onClose()
   }
 

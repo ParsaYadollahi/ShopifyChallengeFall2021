@@ -76,7 +76,7 @@ const Nominations: React.FC<Props> = ({ nominationData }) => {
   }, [movieNominations])
 
   const handleDeleteNomination = (movieNomination: IMovies) => {
-    setNominations(movieNominations.filter((deletedNomination) => deletedNomination.Title !== movieNomination.Title));
+    setNominations(movieNominations.filter((deletedNomination) => deletedNomination.imdbID !== movieNomination.imdbID));
   }
 
   const openDialogMovie = (movieimdbID: String) => {
