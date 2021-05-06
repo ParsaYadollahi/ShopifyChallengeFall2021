@@ -74,7 +74,7 @@ The following tests were run using the Nighwatch end-to-end testing framework:
 
 Clone this repo and run `npm install` while in the repo root directory to install project dependencies.
 
-There are three commands available:
+There are three commands available from the root directory:
 
 ```
 
