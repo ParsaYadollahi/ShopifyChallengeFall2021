@@ -1,19 +1,19 @@
 module.exports = {
-    // 'Non-existing movie test': (browser) => {
-    //     const movieTitle = 'aaabbccc';
-    //     const seachBar = '#title';
-    //     const snackBar = '#snackBarError';
-    //     const strongMovieTitle = '#strongMovieTitleError';
-    //     browser
-    //         .url('http://localhost:3000/')
-    //         .assert.elementPresent(seachBar)
-    //         .setValue(seachBar, [movieTitle, browser.Keys.ENTER])
-    //         .assert.elementPresent(snackBar)
-    //         .assert.elementPresent(strongMovieTitle)
-    //         .assert.containsText(strongMovieTitle, movieTitle)
-    //         .end();
-    //     browser.pause(2 * 1000);
-    // },
+    'Non-existing movie test': (browser) => {
+        const movieTitle = 'aaabbccc';
+        const seachBar = '#title';
+        const snackBar = '#snackBarError';
+        const strongMovieTitle = '#strongMovieTitleError';
+        browser
+            .url('http://localhost:3000/')
+            .assert.elementPresent(seachBar)
+            .setValue(seachBar, [movieTitle, browser.Keys.ENTER])
+            .assert.elementPresent(snackBar)
+            .assert.elementPresent(strongMovieTitle)
+            .assert.containsText(strongMovieTitle, movieTitle)
+            .end();
+        browser.pause(2 * 1000);
+    },
 
     'adding-6-movies test': (browser) => {
         const movieTitle = 'avengers';
@@ -44,7 +44,6 @@ module.exports = {
             .assert.elementPresent(fifthResult)
             .click(fifthResult)
             .assert.elementPresent(sixthResult)
-            .click(sixthResult)
             .assert.elementPresent(snackBar)
             .assert.elementPresent(strongMovieTitle)
             .assert.containsText(strongMovieTitle, 'Delete')
@@ -83,7 +82,6 @@ module.exports = {
             .assert.elementPresent(fifthResult)
             .click(fifthResult)
             .assert.elementPresent(sixthResult)
-            .click(sixthResult)
             .assert.elementPresent(snackBar)
             .assert.elementPresent(strongMovieTitle)
             .assert.containsText(strongMovieTitle, 'Delete')

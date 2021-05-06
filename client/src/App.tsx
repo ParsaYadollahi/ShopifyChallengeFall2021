@@ -1,5 +1,4 @@
 import React, { useState } from "react"
-import './App.css';
 
 // Components
 import SearchBar from "./components/SearchBar"

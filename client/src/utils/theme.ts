@@ -88,5 +88,4 @@ const themeFile = {
 
 };
 
-
 export default themeFile
