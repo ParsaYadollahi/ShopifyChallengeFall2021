@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites errors="0"
+            failures="0"
+            tests="5">
+
+  <testsuite name="nightwatchTest"
+    errors="0" failures="0" hostname="" id="" package="nightwatchTest" skipped="0"
+    tests="5" time="22.68" timestamp="">
+  
+    <testcase name="Non-existing movie test" classname="nightwatchTest" time="3.596" assertions="4">
+
+    
+
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="adding-6-movies test" classname="nightwatchTest" time="5.331" assertions="10">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="adding-and-deleteing-movies test" classname="nightwatchTest" time="3.440" assertions="12">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="deleting-a-movies test" classname="nightwatchTest" time="5.041" assertions="4">
+
+    
+
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="local-storage-keep test" classname="nightwatchTest" time="5.275" assertions="6">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    </testcase>
+  
+
+  
+
+    
+
+  
+  </testsuite>
+</testsuites>
